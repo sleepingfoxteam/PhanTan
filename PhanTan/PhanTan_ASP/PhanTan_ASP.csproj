@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DichVusController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InnerLoginController.cs" />
     <Compile Include="Controllers\InternetBankingsController.cs" />
@@ -273,6 +274,10 @@
     <Content Include="Views\InnerLogin\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Shared\_layout_khachhang.cshtml" />
+    <Content Include="Views\DichVus\TaiKhoanThanhToan.cshtml" />
+    <Content Include="Views\DichVus\TaiKhoanTietKiem.cshtml" />
+    <Content Include="Views\DichVus\TheThanhToan.cshtml" />
+    <Content Include="Views\DichVus\InternetBanking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
