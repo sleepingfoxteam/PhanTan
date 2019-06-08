@@ -1,0 +1,56 @@
+﻿@model PhanTan_ASP.Models.TKTT
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>TKTT</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SoDu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoDu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rowguid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rowguid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChiNhanh1.TenCN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChiNhanh1.TenCN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KhachHang1.Hoten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KhachHang1.Hoten)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

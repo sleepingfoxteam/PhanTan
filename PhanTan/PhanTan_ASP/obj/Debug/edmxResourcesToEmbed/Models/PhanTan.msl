@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NganHangModelStoreContainer" CdmEntityContainer="NganHangEntities">
+    <EntitySetMapping Name="ChiNhanhs">
+      <EntityTypeMapping TypeName="NganHangModel.ChiNhanh">
+        <MappingFragment StoreEntitySet="ChiNhanh">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TenCN" ColumnName="TenCN" />
+          <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IB_TaiKhoan">
+      <EntityTypeMapping TypeName="NganHangModel.IB_TaiKhoan">
+        <MappingFragment StoreEntitySet="IB_TaiKhoan">
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="TaiKhoan" ColumnName="TaiKhoan" />
+          <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InternetBankings">
+      <EntityTypeMapping TypeName="NganHangModel.InternetBanking">
+        <MappingFragment StoreEntitySet="InternetBanking">
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="KhachHang" ColumnName="KhachHang" />
+          <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KhachHangs">
+      <EntityTypeMapping TypeName="NganHangModel.KhachHang">
+        <MappingFragment StoreEntitySet="KhachHang">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Hoten" ColumnName="Hoten" />
+          <ScalarProperty Name="ChiNhanh" ColumnName="ChiNhanh" />
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="Sdt" ColumnName="Sdt" />
+          <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NhanViens">
+      <EntityTypeMapping TypeName="NganHangModel.NhanVien">
+        <MappingFragment StoreEntitySet="NhanVien">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+          <ScalarProperty Name="LuongCB" ColumnName="LuongCB" />
+          <ScalarProperty Name="HeSo" ColumnName="HeSo" />
+          <ScalarProperty Name="ChiNhanh" ColumnName="ChiNhanh" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="Sdt" ColumnName="Sdt" />
+          <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Thes">
+      <EntityTypeMapping TypeName="NganHangModel.The">
+        <MappingFragment StoreEntitySet="The">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="KhachHang" ColumnName="KhachHang" />
+          <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="The_TaiKhoan">
+      <EntityTypeMapping TypeName="NganHangModel.The_TaiKhoan">
+        <MappingFragment StoreEntitySet="The_TaiKhoan">
+          <ScalarProperty Name="The" ColumnName="The" />
+          <ScalarProperty Name="TaiKhoan" ColumnName="TaiKhoan" />
+          <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TKTKs">
+      <EntityTypeMapping TypeName="NganHangModel.TKTK">
+        <MappingFragment StoreEntitySet="TKTK">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="KhachHang" ColumnName="KhachHang" />
+          <ScalarProperty Name="SoDu" ColumnName="SoDu" />
+          <ScalarProperty Name="KyHan" ColumnName="KyHan" />
+          <ScalarProperty Name="LaiSuat" ColumnName="LaiSuat" />
+          <ScalarProperty Name="NgayBatDau" ColumnName="NgayBatDau" />
+          <ScalarProperty Name="NgayHetHan" ColumnName="NgayHetHan" />
+          <ScalarProperty Name="TaiKhoanLienKet" ColumnName="TaiKhoanLienKet" />
+          <ScalarProperty Name="ChiNhanh" ColumnName="ChiNhanh" />
+          <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TKTTs">
+      <EntityTypeMapping TypeName="NganHangModel.TKTT">
+        <MappingFragment StoreEntitySet="TKTT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="KhachHang" ColumnName="KhachHang" />
+          <ScalarProperty Name="ChiNhanh" ColumnName="ChiNhanh" />
+          <ScalarProperty Name="SoDu" ColumnName="SoDu" />
+          <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_delete_internet_banking" FunctionName="NganHangModel.Store.sp_delete_internet_banking" />
+    <FunctionImportMapping FunctionImportName="sp_delete_khachhang" FunctionName="NganHangModel.Store.sp_delete_khachhang" />
+    <FunctionImportMapping FunctionImportName="sp_delete_nhanvien" FunctionName="NganHangModel.Store.sp_delete_nhanvien" />
+    <FunctionImportMapping FunctionImportName="sp_delete_the" FunctionName="NganHangModel.Store.sp_delete_the" />
+    <FunctionImportMapping FunctionImportName="sp_insert_internet_banking" FunctionName="NganHangModel.Store.sp_insert_internet_banking" />
+    <FunctionImportMapping FunctionImportName="sp_insert_khachhang" FunctionName="NganHangModel.Store.sp_insert_khachhang" />
+    <FunctionImportMapping FunctionImportName="sp_insert_nhanvien" FunctionName="NganHangModel.Store.sp_insert_nhanvien" />
+    <FunctionImportMapping FunctionImportName="sp_insert_the" FunctionName="NganHangModel.Store.sp_insert_the" />
+    <FunctionImportMapping FunctionImportName="sp_insert_tktk" FunctionName="NganHangModel.Store.sp_insert_tktk" />
+    <FunctionImportMapping FunctionImportName="sp_insert_tktt" FunctionName="NganHangModel.Store.sp_insert_tktt" />
+    <FunctionImportMapping FunctionImportName="sp_select_nhanvien" FunctionName="NganHangModel.Store.sp_select_nhanvien">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="NganHangModel.sp_select_nhanvien_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+          <ScalarProperty Name="LuongCB" ColumnName="LuongCB" />
+          <ScalarProperty Name="HeSo" ColumnName="HeSo" />
+          <ScalarProperty Name="ChiNhanh" ColumnName="ChiNhanh" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="Sdt" ColumnName="Sdt" />
+          <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_update_internet_banking" FunctionName="NganHangModel.Store.sp_update_internet_banking" />
+    <FunctionImportMapping FunctionImportName="sp_update_khachhang" FunctionName="NganHangModel.Store.sp_update_khachhang" />
+    <FunctionImportMapping FunctionImportName="sp_update_nhanvien_nhanvien" FunctionName="NganHangModel.Store.sp_update_nhanvien_nhanvien" />
+    <FunctionImportMapping FunctionImportName="sp_update_nhanvien_quanly" FunctionName="NganHangModel.Store.sp_update_nhanvien_quanly" />
+    <FunctionImportMapping FunctionImportName="sp_update_the" FunctionName="NganHangModel.Store.sp_update_the" />
+    <FunctionImportMapping FunctionImportName="sp_update_tktt" FunctionName="NganHangModel.Store.sp_update_tktt" />
+  </EntityContainerMapping>
+</Mapping>
