@@ -129,12 +129,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InnerLoginController.cs" />
     <Compile Include="Controllers\InternetBankingsController.cs" />
     <Compile Include="Controllers\KhachHangsController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NhanViensController.cs" />
     <Compile Include="Controllers\ThesController.cs" />
     <Compile Include="Controllers\TKTKsController.cs" />
     <Compile Include="Controllers\TKTTsController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -268,6 +271,9 @@
     <Content Include="Views\InternetBankings\Details.cshtml" />
     <Content Include="Views\InternetBankings\Edit.cshtml" />
     <Content Include="Views\InternetBankings\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\InnerLogin\Index.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
