@@ -20,9 +20,13 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("KhachHang", "Index", "KhachHangs")</li>
-                    <li>@Html.ActionLink("NhanVien", "Index", "NhanViens")</li>
+                    @{
+                        if (Session["role"].ToString().Equals("NhanVien")==false)
+                        {
+                            <li>@Html.ActionLink("NhanVien", "Index", "NhanViens")</li>
+                        }
+                    }
                     <li>@Html.ActionLink("The", "Index", "Thes")</li>
                     <li>@Html.ActionLink("TK_TietKiem", "Index", "TKTKs")</li>
                     <li>@Html.ActionLink("TK_ThanhToan", "Index", "TKTTs")</li>
