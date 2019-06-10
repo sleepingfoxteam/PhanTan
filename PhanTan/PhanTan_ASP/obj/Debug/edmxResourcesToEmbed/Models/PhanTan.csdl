@@ -383,22 +383,12 @@
     <FunctionImport Name="sp_insert_the">
       <Parameter Name="khachhang" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="sp_insert_tktk">
-      <Parameter Name="khachhang" Mode="In" Type="String" />
-      <Parameter Name="sodu" Mode="In" Type="Int32" />
-      <Parameter Name="kyhan" Mode="In" Type="Int32" />
-      <Parameter Name="laisuat" Mode="In" Type="Double" />
-      <Parameter Name="ngaybatdau" Mode="In" Type="DateTime" />
-      <Parameter Name="ngayhethan" Mode="In" Type="DateTime" />
-      <Parameter Name="taikhoanlienket" Mode="In" Type="String" />
-      <Parameter Name="chinhanh" Mode="In" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="sp_insert_tktt">
       <Parameter Name="khachhang" Mode="In" Type="String" />
       <Parameter Name="chinhanh" Mode="In" Type="String" />
       <Parameter Name="sodu" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_select_nhanvien" ReturnType="Collection(NganHangModel.sp_select_nhanvien_Result)">
+    <FunctionImport Name="sp_select_nhanvien">
       <Parameter Name="hoten" Mode="In" Type="String" />
       <Parameter Name="sdt" Mode="In" Type="String" />
       <Parameter Name="luongcb" Mode="In" Type="Int32" />
@@ -436,15 +426,4 @@
       <Parameter Name="sodu" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
-  <ComplexType Name="sp_select_nhanvien_Result">
-    <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="HoTen" Nullable="false" MaxLength="200" />
-    <Property Type="DateTime" Name="NgaySinh" Nullable="true" />
-    <Property Type="Int32" Name="LuongCB" Nullable="false" />
-    <Property Type="Double" Name="HeSo" Nullable="false" />
-    <Property Type="String" Name="ChiNhanh" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="DiaChi" Nullable="true" MaxLength="Max" />
-    <Property Type="String" Name="Sdt" Nullable="true" MaxLength="20" />
-    <Property Type="Guid" Name="rowguid" Nullable="false" />
-  </ComplexType>
 </Schema>

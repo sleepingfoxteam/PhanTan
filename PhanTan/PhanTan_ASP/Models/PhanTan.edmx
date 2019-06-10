@@ -300,16 +300,6 @@
         <Function Name="sp_insert_the" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="khachhang" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="sp_insert_tktk" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="khachhang" Type="nvarchar" Mode="In" />
-          <Parameter Name="sodu" Type="int" Mode="In" />
-          <Parameter Name="kyhan" Type="int" Mode="In" />
-          <Parameter Name="laisuat" Type="float" Mode="In" />
-          <Parameter Name="ngaybatdau" Type="date" Mode="In" />
-          <Parameter Name="ngayhethan" Type="date" Mode="In" />
-          <Parameter Name="taikhoanlienket" Type="nvarchar" Mode="In" />
-          <Parameter Name="chinhanh" Type="nvarchar" Mode="In" />
-        </Function>
         <Function Name="sp_insert_tktt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="khachhang" Type="nvarchar" Mode="In" />
           <Parameter Name="chinhanh" Type="nvarchar" Mode="In" />
@@ -803,22 +793,12 @@
           <FunctionImport Name="sp_insert_the">
             <Parameter Name="khachhang" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_insert_tktk">
-            <Parameter Name="khachhang" Mode="In" Type="String" />
-            <Parameter Name="sodu" Mode="In" Type="Int32" />
-            <Parameter Name="kyhan" Mode="In" Type="Int32" />
-            <Parameter Name="laisuat" Mode="In" Type="Double" />
-            <Parameter Name="ngaybatdau" Mode="In" Type="DateTime" />
-            <Parameter Name="ngayhethan" Mode="In" Type="DateTime" />
-            <Parameter Name="taikhoanlienket" Mode="In" Type="String" />
-            <Parameter Name="chinhanh" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="sp_insert_tktt">
             <Parameter Name="khachhang" Mode="In" Type="String" />
             <Parameter Name="chinhanh" Mode="In" Type="String" />
             <Parameter Name="sodu" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_select_nhanvien" ReturnType="Collection(NganHangModel.sp_select_nhanvien_Result)">
+          <FunctionImport Name="sp_select_nhanvien">
             <Parameter Name="hoten" Mode="In" Type="String" />
             <Parameter Name="sdt" Mode="In" Type="String" />
             <Parameter Name="luongcb" Mode="In" Type="Int32" />
@@ -856,17 +836,6 @@
             <Parameter Name="sodu" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
-        <ComplexType Name="sp_select_nhanvien_Result">
-          <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="HoTen" Nullable="false" MaxLength="200" />
-          <Property Type="DateTime" Name="NgaySinh" Nullable="true" />
-          <Property Type="Int32" Name="LuongCB" Nullable="false" />
-          <Property Type="Double" Name="HeSo" Nullable="false" />
-          <Property Type="String" Name="ChiNhanh" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="DiaChi" Nullable="true" MaxLength="Max" />
-          <Property Type="String" Name="Sdt" Nullable="true" MaxLength="20" />
-          <Property Type="Guid" Name="rowguid" Nullable="false" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -983,23 +952,8 @@
           <FunctionImportMapping FunctionImportName="sp_insert_khachhang" FunctionName="NganHangModel.Store.sp_insert_khachhang" />
           <FunctionImportMapping FunctionImportName="sp_insert_nhanvien" FunctionName="NganHangModel.Store.sp_insert_nhanvien" />
           <FunctionImportMapping FunctionImportName="sp_insert_the" FunctionName="NganHangModel.Store.sp_insert_the" />
-          <FunctionImportMapping FunctionImportName="sp_insert_tktk" FunctionName="NganHangModel.Store.sp_insert_tktk" />
           <FunctionImportMapping FunctionImportName="sp_insert_tktt" FunctionName="NganHangModel.Store.sp_insert_tktt" />
-          <FunctionImportMapping FunctionImportName="sp_select_nhanvien" FunctionName="NganHangModel.Store.sp_select_nhanvien">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="NganHangModel.sp_select_nhanvien_Result">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
-                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
-                <ScalarProperty Name="LuongCB" ColumnName="LuongCB" />
-                <ScalarProperty Name="HeSo" ColumnName="HeSo" />
-                <ScalarProperty Name="ChiNhanh" ColumnName="ChiNhanh" />
-                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
-                <ScalarProperty Name="Sdt" ColumnName="Sdt" />
-                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_select_nhanvien" FunctionName="NganHangModel.Store.sp_select_nhanvien" />
           <FunctionImportMapping FunctionImportName="sp_update_internet_banking" FunctionName="NganHangModel.Store.sp_update_internet_banking" />
           <FunctionImportMapping FunctionImportName="sp_update_khachhang" FunctionName="NganHangModel.Store.sp_update_khachhang" />
           <FunctionImportMapping FunctionImportName="sp_update_nhanvien_nhanvien" FunctionName="NganHangModel.Store.sp_update_nhanvien_nhanvien" />

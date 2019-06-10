@@ -111,23 +111,8 @@
     <FunctionImportMapping FunctionImportName="sp_insert_khachhang" FunctionName="NganHangModel.Store.sp_insert_khachhang" />
     <FunctionImportMapping FunctionImportName="sp_insert_nhanvien" FunctionName="NganHangModel.Store.sp_insert_nhanvien" />
     <FunctionImportMapping FunctionImportName="sp_insert_the" FunctionName="NganHangModel.Store.sp_insert_the" />
-    <FunctionImportMapping FunctionImportName="sp_insert_tktk" FunctionName="NganHangModel.Store.sp_insert_tktk" />
     <FunctionImportMapping FunctionImportName="sp_insert_tktt" FunctionName="NganHangModel.Store.sp_insert_tktt" />
-    <FunctionImportMapping FunctionImportName="sp_select_nhanvien" FunctionName="NganHangModel.Store.sp_select_nhanvien">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="NganHangModel.sp_select_nhanvien_Result">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
-          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
-          <ScalarProperty Name="LuongCB" ColumnName="LuongCB" />
-          <ScalarProperty Name="HeSo" ColumnName="HeSo" />
-          <ScalarProperty Name="ChiNhanh" ColumnName="ChiNhanh" />
-          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
-          <ScalarProperty Name="Sdt" ColumnName="Sdt" />
-          <ScalarProperty Name="rowguid" ColumnName="rowguid" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_select_nhanvien" FunctionName="NganHangModel.Store.sp_select_nhanvien" />
     <FunctionImportMapping FunctionImportName="sp_update_internet_banking" FunctionName="NganHangModel.Store.sp_update_internet_banking" />
     <FunctionImportMapping FunctionImportName="sp_update_khachhang" FunctionName="NganHangModel.Store.sp_update_khachhang" />
     <FunctionImportMapping FunctionImportName="sp_update_nhanvien_nhanvien" FunctionName="NganHangModel.Store.sp_update_nhanvien_nhanvien" />

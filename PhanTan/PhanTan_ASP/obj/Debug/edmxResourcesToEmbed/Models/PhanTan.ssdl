@@ -295,16 +295,6 @@
   <Function Name="sp_insert_the" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="khachhang" Type="nvarchar" Mode="In" />
   </Function>
-  <Function Name="sp_insert_tktk" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="khachhang" Type="nvarchar" Mode="In" />
-    <Parameter Name="sodu" Type="int" Mode="In" />
-    <Parameter Name="kyhan" Type="int" Mode="In" />
-    <Parameter Name="laisuat" Type="float" Mode="In" />
-    <Parameter Name="ngaybatdau" Type="date" Mode="In" />
-    <Parameter Name="ngayhethan" Type="date" Mode="In" />
-    <Parameter Name="taikhoanlienket" Type="nvarchar" Mode="In" />
-    <Parameter Name="chinhanh" Type="nvarchar" Mode="In" />
-  </Function>
   <Function Name="sp_insert_tktt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="khachhang" Type="nvarchar" Mode="In" />
     <Parameter Name="chinhanh" Type="nvarchar" Mode="In" />

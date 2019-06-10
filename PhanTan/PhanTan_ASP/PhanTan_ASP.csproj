@@ -172,9 +172,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PhanTan.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\sp_select_nhanvien_Result.cs">
-      <DependentUpon>PhanTan.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\The.cs">
       <DependentUpon>PhanTan.tt</DependentUpon>
     </Compile>

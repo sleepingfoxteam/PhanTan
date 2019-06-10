@@ -157,43 +157,6 @@ namespace PhanTan_ASP.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_insert_the", khachhangParameter);
         }
     
-        public virtual int sp_insert_tktk(string khachhang, Nullable<int> sodu, Nullable<int> kyhan, Nullable<double> laisuat, Nullable<System.DateTime> ngaybatdau, Nullable<System.DateTime> ngayhethan, string taikhoanlienket, string chinhanh)
-        {
-            var khachhangParameter = khachhang != null ?
-                new ObjectParameter("khachhang", khachhang) :
-                new ObjectParameter("khachhang", typeof(string));
-    
-            var soduParameter = sodu.HasValue ?
-                new ObjectParameter("sodu", sodu) :
-                new ObjectParameter("sodu", typeof(int));
-    
-            var kyhanParameter = kyhan.HasValue ?
-                new ObjectParameter("kyhan", kyhan) :
-                new ObjectParameter("kyhan", typeof(int));
-    
-            var laisuatParameter = laisuat.HasValue ?
-                new ObjectParameter("laisuat", laisuat) :
-                new ObjectParameter("laisuat", typeof(double));
-    
-            var ngaybatdauParameter = ngaybatdau.HasValue ?
-                new ObjectParameter("ngaybatdau", ngaybatdau) :
-                new ObjectParameter("ngaybatdau", typeof(System.DateTime));
-    
-            var ngayhethanParameter = ngayhethan.HasValue ?
-                new ObjectParameter("ngayhethan", ngayhethan) :
-                new ObjectParameter("ngayhethan", typeof(System.DateTime));
-    
-            var taikhoanlienketParameter = taikhoanlienket != null ?
-                new ObjectParameter("taikhoanlienket", taikhoanlienket) :
-                new ObjectParameter("taikhoanlienket", typeof(string));
-    
-            var chinhanhParameter = chinhanh != null ?
-                new ObjectParameter("chinhanh", chinhanh) :
-                new ObjectParameter("chinhanh", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_insert_tktk", khachhangParameter, soduParameter, kyhanParameter, laisuatParameter, ngaybatdauParameter, ngayhethanParameter, taikhoanlienketParameter, chinhanhParameter);
-        }
-    
         public virtual int sp_insert_tktt(string khachhang, string chinhanh, Nullable<int> sodu)
         {
             var khachhangParameter = khachhang != null ?
@@ -211,7 +174,7 @@ namespace PhanTan_ASP.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_insert_tktt", khachhangParameter, chinhanhParameter, soduParameter);
         }
     
-        public virtual ObjectResult<sp_select_nhanvien_Result> sp_select_nhanvien(string hoten, string sdt, Nullable<int> luongcb, Nullable<double> heso)
+        public virtual int sp_select_nhanvien(string hoten, string sdt, Nullable<int> luongcb, Nullable<double> heso)
         {
             var hotenParameter = hoten != null ?
                 new ObjectParameter("hoten", hoten) :
@@ -229,7 +192,7 @@ namespace PhanTan_ASP.Models
                 new ObjectParameter("heso", heso) :
                 new ObjectParameter("heso", typeof(double));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_select_nhanvien_Result>("sp_select_nhanvien", hotenParameter, sdtParameter, luongcbParameter, hesoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_select_nhanvien", hotenParameter, sdtParameter, luongcbParameter, hesoParameter);
         }
     
         public virtual int sp_update_internet_banking(string username, string password)
