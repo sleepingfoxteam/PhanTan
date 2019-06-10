@@ -1,3 +1,0 @@
-Server Chi Nhanh 1: CN1
-Server Chi Nhanh 2: CN2
-Server Chinh: TEN_MAY
