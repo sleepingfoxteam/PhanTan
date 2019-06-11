@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29001.49
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TUIBANK_WEBAPP", "TUIBANK_WEBAPP.csproj", "{9CD8EA73-E292-4283-92CB-6E636785EFBC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9CD8EA73-E292-4283-92CB-6E636785EFBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CD8EA73-E292-4283-92CB-6E636785EFBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CD8EA73-E292-4283-92CB-6E636785EFBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CD8EA73-E292-4283-92CB-6E636785EFBC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FADB3326-CFD1-46A2-BEC7-436C8E82DFC0}
+	EndGlobalSection
+EndGlobal
