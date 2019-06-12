@@ -1,6 +1,55 @@
-﻿*{
+﻿/*import font from google font*/
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display|Roboto|Roboto+Slab&display=swap');
+/*fonts: Roboto:Sans; Roboto Slab,PlayfairDisplay: serif*/
+@import url('https://fonts.googleapis.com/css?family=Bungee+Shade&display=swap');
+/*font: bungee shade */
+/*color variables*/
+$black: rgba(44,44,44,1) ;
+$red: rgba(255,95,95,1) ;
+$blue: rgba(131,255,230,1) ;
+$white: rgba(252,252,252,1) ;
+
+$colors : ("black":$black,"white":$white,"red":$red,"blue":$blue);
+/* width*/
+$NAV_WIDTH: 150px;
+@mixin roboto {
+    font-family: 'Roboto', sans-serif;
+}
+@mixin robotoslab {
+    font-family: 'Roboto Slab', serif;
+}
+@mixin playfair {
+    font-family: 'Playfair Display', serif;
+}
+@mixin bungee {
+    font-family: 'Bungee Shade', cursive;
+}
+
+@each $key, $value in $colors{
+    .text-#{$key}{
+        color: $value;
+    }
+}
+*{
     padding: 0;
     margin: 0;
+}
+
+body{
+    @include roboto;
+    font-size: 1em;
+    line-height: 1.5em;
+    color: $black;
+    font-weight: 400;
+}
+
+a{
+    text-decoration: none;
+    color: $black;
+    &:hover{
+        color: $red;
+        text-decoration: none;
+    }
 }
 
 .full-page{
@@ -8,20 +57,77 @@
     height: 100%;
     position: relative;
 }
-.my-nav{
-    width: 200px;
+.my-nav {
+    width: $NAV_WIDTH;
     height: 100%;
-    overflow-x:hidden;
-    position:absolute;
-    left:0;
-    top:0;
+    overflow-x: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+
+    .nav-ul {
+        width: 100%;
+
+        li {
+            width: 100%;
+            padding: 1.5em 2em;
+            border-bottom: 1px solid $black;
+            transition: 0.4s;
+
+            a {
+                font-size: 1.2em;
+
+                &:hover {
+                    color: $black;
+                }
+            }
+
+            &:hover {
+                box-shadow: lighten($black,30) 0px 2px 3px 2px;
+                border-bottom: none;
+
+                a {
+                    font-weight: 700;
+                }
+            }
+        }
+    }
 }
 .my-body{
-    width: calc(100% - 200px);
+    width: calc(100% - 150px);
     height: 100%;
-    margin-left:200px;
     position:absolute;
     top:0;
     bottom: 0;
-    right:0;
+    right: 0;
+}
+
+.btn{
+    padding: 1em 2em;
+    background: white;
+    color: black;
+    transition: 0.4s;
+}
+
+.logo{
+    @include bungee;
+    font-size: 2em;
+    font-weight: 700;
+    display: block;
+    align-self: center;
+    text-align: center;
+    &:hover{
+        color: $black;
+    }
+}
+
+.div-logo{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

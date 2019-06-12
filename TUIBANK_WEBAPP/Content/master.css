@@ -1,35 +1,159 @@
-/* line 1, master.scss */
+/*import font from google font*/
+@import url("https://fonts.googleapis.com/css?family=Playfair+Display|Roboto|Roboto+Slab&display=swap");
+/*fonts: Roboto:Sans; Roboto Slab,PlayfairDisplay: serif*/
+@import url("https://fonts.googleapis.com/css?family=Bungee+Shade&display=swap");
+/*font: bungee shade */
+/*color variables*/
+/* width*/
+/* line 29, master.scss */
+.text-black {
+  color: #2c2c2c;
+}
+
+/* line 29, master.scss */
+.text-white {
+  color: #fcfcfc;
+}
+
+/* line 29, master.scss */
+.text-red {
+  color: #ff5f5f;
+}
+
+/* line 29, master.scss */
+.text-blue {
+  color: #83ffe6;
+}
+
+/* line 33, master.scss */
 * {
   padding: 0;
   margin: 0;
 }
 
-/* line 6, master.scss */
+/* line 38, master.scss */
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  line-height: 1.5em;
+  color: #2c2c2c;
+  font-weight: 400;
+}
+
+/* line 46, master.scss */
+a {
+  text-decoration: none;
+  color: #2c2c2c;
+}
+/* line 49, master.scss */
+a:hover {
+  color: #ff5f5f;
+  text-decoration: none;
+}
+
+/* line 55, master.scss */
 .full-page {
   width: 100%;
   height: 100%;
   position: relative;
 }
 
-/* line 11, master.scss */
+/* line 60, master.scss */
 .my-nav {
-  width: 200px;
+  width: 150px;
   height: 100%;
   overflow-x: hidden;
   position: absolute;
   left: 0;
   top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+}
+/* line 71, master.scss */
+.my-nav .nav-ul {
+  width: 100%;
+}
+/* line 74, master.scss */
+.my-nav .nav-ul li {
+  width: 100%;
+  padding: 1.5em 2em;
+  border-bottom: 1px solid #2c2c2c;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+/* line 80, master.scss */
+.my-nav .nav-ul li a {
+  font-size: 1.2em;
+}
+/* line 83, master.scss */
+.my-nav .nav-ul li a:hover {
+  color: #2c2c2c;
+}
+/* line 88, master.scss */
+.my-nav .nav-ul li:hover {
+  -webkit-box-shadow: #797979 0px 2px 3px 2px;
+          box-shadow: #797979 0px 2px 3px 2px;
+  border-bottom: none;
+}
+/* line 92, master.scss */
+.my-nav .nav-ul li:hover a {
+  font-weight: 700;
 }
 
-/* line 19, master.scss */
+/* line 99, master.scss */
 .my-body {
-  width: calc(100% - 200px);
+  width: calc(100% - 150px);
   height: 100%;
-  margin-left: 200px;
   position: absolute;
   top: 0;
   bottom: 0;
   right: 0;
+}
+
+/* line 108, master.scss */
+.btn {
+  padding: 1em 2em;
+  background: white;
+  color: black;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+/* line 115, master.scss */
+.logo {
+  font-family: 'Bungee Shade', cursive;
+  font-size: 2em;
+  font-weight: 700;
+  display: block;
+  -ms-flex-item-align: center;
+      align-self: center;
+  text-align: center;
+}
+/* line 122, master.scss */
+.logo:hover {
+  color: #2c2c2c;
+}
+
+/* line 127, master.scss */
+.div-logo {
+  width: 100%;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 /*# sourceMappingURL=master.css.map */
