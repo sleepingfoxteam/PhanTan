@@ -67,6 +67,7 @@ a{
     display: flex;
     flex-direction: column;
     align-content: flex-start;
+    border-right: 1px solid $black;
 
     .nav-ul {
         width: 100%;

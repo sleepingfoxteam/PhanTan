@@ -10,16 +10,16 @@
 </head>
 <body>
     <div class="my-nav">
-        <div class="div-logo">
+        <div class="div-logo" style="border-bottom: 1px solid black;">
             @Html.ActionLink("TUIBANK", "Index", "Home", new { Class = "logo" })
         </div>
         <ul class="nav-ul">
-            <li><a>Khach Hang</a></li>
-            <li><a>Tai Khoan</a></li>
-            <li><a class="text-red">Dang Xuat</a></li>
+            <li>@Html.ActionLink("Khach Hang","Main","Customers")</li>
+            <li>@Html.ActionLink("Tai Khoan", "Main", "Accounts")</li>
+            <li>@Html.ActionLink("Dang Xuat", "Index", "Login", new { Class = "text-red"})</li>
         </ul>
     </div>
-    <div class="my-body" style="background:magenta;">
+    <div class="my-body" style="padding: 2em;">
         @RenderBody()
         body
     </div>

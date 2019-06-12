@@ -132,5 +132,11 @@ namespace TUIBANK_WEBAPP.Controllers
             }
             base.Dispose(disposing);
         }
+
+        // GET: Main
+        public ActionResult Main()
+        {
+            return View();
+        }
     }
 }

@@ -75,12 +75,13 @@ a:hover {
           flex-direction: column;
   -ms-flex-line-pack: start;
       align-content: flex-start;
+  border-right: 1px solid #2c2c2c;
 }
-/* line 71, master.scss */
+/* line 72, master.scss */
 .my-nav .nav-ul {
   width: 100%;
 }
-/* line 74, master.scss */
+/* line 75, master.scss */
 .my-nav .nav-ul li {
   width: 100%;
   padding: 1.5em 2em;
@@ -88,26 +89,26 @@ a:hover {
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
-/* line 80, master.scss */
+/* line 81, master.scss */
 .my-nav .nav-ul li a {
   font-size: 1.2em;
 }
-/* line 83, master.scss */
+/* line 84, master.scss */
 .my-nav .nav-ul li a:hover {
   color: #2c2c2c;
 }
-/* line 88, master.scss */
+/* line 89, master.scss */
 .my-nav .nav-ul li:hover {
   -webkit-box-shadow: #797979 0px 2px 3px 2px;
           box-shadow: #797979 0px 2px 3px 2px;
   border-bottom: none;
 }
-/* line 92, master.scss */
+/* line 93, master.scss */
 .my-nav .nav-ul li:hover a {
   font-weight: 700;
 }
 
-/* line 99, master.scss */
+/* line 100, master.scss */
 .my-body {
   width: calc(100% - 150px);
   height: 100%;
@@ -117,7 +118,7 @@ a:hover {
   right: 0;
 }
 
-/* line 108, master.scss */
+/* line 109, master.scss */
 .btn {
   padding: 1em 2em;
   background: white;
@@ -126,7 +127,7 @@ a:hover {
   transition: 0.4s;
 }
 
-/* line 115, master.scss */
+/* line 116, master.scss */
 .logo {
   font-family: 'Bungee Shade', cursive;
   font-size: 2em;
@@ -136,12 +137,12 @@ a:hover {
       align-self: center;
   text-align: center;
 }
-/* line 122, master.scss */
+/* line 123, master.scss */
 .logo:hover {
   color: #2c2c2c;
 }
 
-/* line 127, master.scss */
+/* line 128, master.scss */
 .div-logo {
   width: 100%;
   height: 50px;
@@ -156,7 +157,7 @@ a:hover {
           justify-content: center;
 }
 
-/* line 135, master.scss */
+/* line 136, master.scss */
 footer {
   position: fixed;
   bottom: 10px;
@@ -172,11 +173,11 @@ footer {
   text-align: center;
 }
 
-/* line 149, master.scss */
+/* line 150, master.scss */
 .img-container {
   overflow: hidden;
 }
-/* line 151, master.scss */
+/* line 152, master.scss */
 .img-container img {
   width: 100%;
   height: auto;
