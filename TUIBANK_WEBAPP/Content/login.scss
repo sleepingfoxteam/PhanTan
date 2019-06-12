@@ -1,0 +1,66 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2em;
+    letter-spacing: 0.1em;
+}
+.block{
+    width: 80%;
+    height: 550px;
+    box-shadow: lighten(black,70) 0px 0px 4px 2px;
+    border-radius: 5px;
+    padding: 0;
+    overflow:hidden;
+}
+
+.form-dangnhap{
+    padding: 2em;
+}
+
+.btn{
+    margin-top: 1em;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border: 1px solid black;
+    border-radius: 0;
+    transition: 0.4s;
+}
+
+.btn:hover{
+    background: black;
+    color: white;
+}
+
+input{
+    border-radius: 0 !important;
+    border: 1px solid black !important;
+}
+
+.img-container{
+    overflow: hidden;
+    width:100%;
+    height:100%;
+}
+
+.img-container>img{
+    width:100%;
+    height:auto;
+}
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3em;
+    letter-spacing: 0.05em;
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+.form-group{
+    margin-bottom: 2.5em;
+}

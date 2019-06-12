@@ -172,4 +172,14 @@ footer {
   text-align: center;
 }
 
+/* line 149, master.scss */
+.img-container {
+  overflow: hidden;
+}
+/* line 151, master.scss */
+.img-container img {
+  width: 100%;
+  height: auto;
+}
+
 /*# sourceMappingURL=master.css.map */
