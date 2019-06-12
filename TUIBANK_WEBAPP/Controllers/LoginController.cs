@@ -13,5 +13,10 @@ namespace TUIBANK_WEBAPP.Controllers
         {
             return View("Index","~/Views/Shared/_empty_layout.cshtml");
         }
+
+        public ActionResult DangXuat()
+        {
+            return View("Index", "~/Views/Shared/_empty_layout.cshtml");
+        }
     }
 }
