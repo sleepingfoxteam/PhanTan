@@ -1,0 +1,451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TUIBANKModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Customer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="Interest" Type="float" />
+          <Property Name="Period" Type="int" />
+          <Property Name="Balance" Type="int" Nullable="false" />
+          <Property Name="Branch" Type="nvarchar" MaxLength="50" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="BranchID" />
+          </Key>
+          <Property Name="BranchID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BranchName" Type="nvarchar" MaxLength="200" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="Address" Type="text" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="Branch" Type="nvarchar" MaxLength="50" />
+          <Property Name="PID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="StaffID" />
+          </Key>
+          <Property Name="StaffID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="Address" Type="text" />
+          <Property Name="PID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="Branch" Type="nvarchar" MaxLength="50" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Account_Branch">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="BranchID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="Branch" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Account_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="Customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_Branch">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="BranchID" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="Branch" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_add_Account" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="customer" Type="nvarchar" Mode="In" />
+          <Parameter Name="startdate" Type="date" Mode="In" />
+          <Parameter Name="enddate" Type="date" Mode="In" />
+          <Parameter Name="interest" Type="float" Mode="In" />
+          <Parameter Name="period" Type="int" Mode="In" />
+          <Parameter Name="balance" Type="int" Mode="In" />
+          <Parameter Name="branch" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_add_Customer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fullnane" Type="nvarchar" Mode="In" />
+          <Parameter Name="birthday" Type="date" Mode="In" />
+          <Parameter Name="address" Type="text" Mode="In" />
+          <Parameter Name="phone" Type="nvarchar" Mode="In" />
+          <Parameter Name="branch" Type="nvarchar" Mode="In" />
+          <Parameter Name="pid" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_add_Staff" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fullname" Type="nvarchar" Mode="In" />
+          <Parameter Name="birthday" Type="date" Mode="In" />
+          <Parameter Name="address" Type="text" Mode="In" />
+          <Parameter Name="pid" Type="nvarchar" Mode="In" />
+          <Parameter Name="phone" Type="nvarchar" Mode="In" />
+          <Parameter Name="branch" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_delete_Account" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_delete_Customer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_delete_staff" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_send_money" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sourceaccount" Type="nvarchar" Mode="In" />
+          <Parameter Name="destinationaccount" Type="nvarchar" Mode="In" />
+          <Parameter Name="money" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_update_Account" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="nvarchar" Mode="In" />
+          <Parameter Name="period" Type="int" Mode="In" />
+          <Parameter Name="interest" Type="float" Mode="In" />
+          <Parameter Name="balance" Type="int" Mode="In" />
+          <Parameter Name="startdate" Type="date" Mode="In" />
+          <Parameter Name="enddate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="sp_update_Account_balance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="nvarchar" Mode="In" />
+          <Parameter Name="balance" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_update_Customer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="nvarchar" Mode="In" />
+          <Parameter Name="fullname" Type="nvarchar" Mode="In" />
+          <Parameter Name="birthday" Type="date" Mode="In" />
+          <Parameter Name="address" Type="text" Mode="In" />
+          <Parameter Name="phone" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_update_Staff" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="nvarchar" Mode="In" />
+          <Parameter Name="fullname" Type="nvarchar" Mode="In" />
+          <Parameter Name="birthday" Type="date" Mode="In" />
+          <Parameter Name="address" Type="text" Mode="In" />
+          <Parameter Name="pid" Type="nvarchar" Mode="In" />
+          <Parameter Name="phone" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="TUIBANKModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Account_Branch" Association="Self.FK_Account_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Account_Customer" Association="Self.FK_Account_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_Branch" Association="Self.FK_Customer_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TUIBANKModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Customer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="Interest" Type="Double" />
+          <Property Name="Period" Type="Int32" />
+          <Property Name="Balance" Type="Int32" Nullable="false" />
+          <Property Name="Branch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="rowguid" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Branch1" Relationship="Self.FK_Account_Branch" FromRole="Account" ToRole="Branch" />
+          <NavigationProperty Name="Customer1" Relationship="Self.FK_Account_Customer" FromRole="Account" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="BranchID" />
+          </Key>
+          <Property Name="BranchID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BranchName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="rowguid" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_Branch" FromRole="Branch" ToRole="Account" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK_Customer_Branch" FromRole="Branch" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Branch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="rowguid" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_Customer" FromRole="Customer" ToRole="Account" />
+          <NavigationProperty Name="Branch1" Relationship="Self.FK_Customer_Branch" FromRole="Customer" ToRole="Branch" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="StaffID" />
+          </Key>
+          <Property Name="StaffID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Branch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="rowguid" Type="Guid" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Account_Branch">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="BranchID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="Branch" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Account_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="Customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_Branch">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="BranchID" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="Branch" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TUIBANKEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="Branches" EntityType="Self.Branch" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Staffs" EntityType="Self.Staff" />
+          <AssociationSet Name="FK_Account_Branch" Association="Self.FK_Account_Branch">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Account_Customer" Association="Self.FK_Account_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_Branch" Association="Self.FK_Customer_Branch">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
+          <FunctionImport Name="sp_add_Account">
+            <Parameter Name="customer" Mode="In" Type="String" />
+            <Parameter Name="startdate" Mode="In" Type="DateTime" />
+            <Parameter Name="enddate" Mode="In" Type="DateTime" />
+            <Parameter Name="interest" Mode="In" Type="Double" />
+            <Parameter Name="period" Mode="In" Type="Int32" />
+            <Parameter Name="balance" Mode="In" Type="Int32" />
+            <Parameter Name="branch" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_add_Customer">
+            <Parameter Name="fullnane" Mode="In" Type="String" />
+            <Parameter Name="birthday" Mode="In" Type="DateTime" />
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="branch" Mode="In" Type="String" />
+            <Parameter Name="pid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_add_Staff">
+            <Parameter Name="fullname" Mode="In" Type="String" />
+            <Parameter Name="birthday" Mode="In" Type="DateTime" />
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="pid" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="branch" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_delete_Account">
+            <Parameter Name="id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_delete_Customer">
+            <Parameter Name="id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_delete_staff">
+            <Parameter Name="id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_send_money">
+            <Parameter Name="sourceaccount" Mode="In" Type="String" />
+            <Parameter Name="destinationaccount" Mode="In" Type="String" />
+            <Parameter Name="money" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_update_Account">
+            <Parameter Name="id" Mode="In" Type="String" />
+            <Parameter Name="period" Mode="In" Type="Int32" />
+            <Parameter Name="interest" Mode="In" Type="Double" />
+            <Parameter Name="balance" Mode="In" Type="Int32" />
+            <Parameter Name="startdate" Mode="In" Type="DateTime" />
+            <Parameter Name="enddate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_update_Account_balance">
+            <Parameter Name="id" Mode="In" Type="String" />
+            <Parameter Name="balance" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_update_Customer">
+            <Parameter Name="id" Mode="In" Type="String" />
+            <Parameter Name="fullname" Mode="In" Type="String" />
+            <Parameter Name="birthday" Mode="In" Type="DateTime" />
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_update_Staff">
+            <Parameter Name="id" Mode="In" Type="String" />
+            <Parameter Name="fullname" Mode="In" Type="String" />
+            <Parameter Name="birthday" Mode="In" Type="DateTime" />
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="pid" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TUIBANKModelStoreContainer" CdmEntityContainer="TUIBANKEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="TUIBANKModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Interest" ColumnName="Interest" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Branches">
+            <EntityTypeMapping TypeName="TUIBANKModel.Branch">
+              <MappingFragment StoreEntitySet="Branch">
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="TUIBANKModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staffs">
+            <EntityTypeMapping TypeName="TUIBANKModel.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_add_Account" FunctionName="TUIBANKModel.Store.sp_add_Account" />
+          <FunctionImportMapping FunctionImportName="sp_add_Customer" FunctionName="TUIBANKModel.Store.sp_add_Customer" />
+          <FunctionImportMapping FunctionImportName="sp_add_Staff" FunctionName="TUIBANKModel.Store.sp_add_Staff" />
+          <FunctionImportMapping FunctionImportName="sp_delete_Account" FunctionName="TUIBANKModel.Store.sp_delete_Account" />
+          <FunctionImportMapping FunctionImportName="sp_delete_Customer" FunctionName="TUIBANKModel.Store.sp_delete_Customer" />
+          <FunctionImportMapping FunctionImportName="sp_delete_staff" FunctionName="TUIBANKModel.Store.sp_delete_staff" />
+          <FunctionImportMapping FunctionImportName="sp_send_money" FunctionName="TUIBANKModel.Store.sp_send_money" />
+          <FunctionImportMapping FunctionImportName="sp_update_Account" FunctionName="TUIBANKModel.Store.sp_update_Account" />
+          <FunctionImportMapping FunctionImportName="sp_update_Account_balance" FunctionName="TUIBANKModel.Store.sp_update_Account_balance" />
+          <FunctionImportMapping FunctionImportName="sp_update_Customer" FunctionName="TUIBANKModel.Store.sp_update_Customer" />
+          <FunctionImportMapping FunctionImportName="sp_update_Staff" FunctionName="TUIBANKModel.Store.sp_update_Staff" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
