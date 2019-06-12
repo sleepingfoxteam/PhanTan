@@ -1,3 +1,35 @@
+/* line 1, master.scss */
+* {
+  padding: 0;
+  margin: 0;
+}
 
+/* line 6, master.scss */
+.full-page {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* line 11, master.scss */
+.my-nav {
+  width: 200px;
+  height: 100%;
+  overflow-x: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* line 19, master.scss */
+.my-body {
+  width: calc(100% - 200px);
+  height: 100%;
+  margin-left: 200px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
 
 /*# sourceMappingURL=master.css.map */
