@@ -131,3 +131,17 @@ a{
     align-items: center;
     justify-content: center;
 }
+
+footer{
+    position: fixed;
+    bottom:10px;
+    left: 0;
+    width: 150px;
+    overflow: hidden;
+    box-sizing: border-box;
+    color: $black;
+    @include playfair;
+    font-weight: 600;
+    font-size: 1.2em;
+    text-align:center;
+}

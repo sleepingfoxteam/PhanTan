@@ -156,4 +156,20 @@ a:hover {
           justify-content: center;
 }
 
+/* line 135, master.scss */
+footer {
+  position: fixed;
+  bottom: 10px;
+  left: 0;
+  width: 150px;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: #2c2c2c;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 1.2em;
+  text-align: center;
+}
+
 /*# sourceMappingURL=master.css.map */
