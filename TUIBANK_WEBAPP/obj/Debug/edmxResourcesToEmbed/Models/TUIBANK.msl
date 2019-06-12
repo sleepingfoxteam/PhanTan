@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TUIBANKModelStoreContainer" CdmEntityContainer="TUIBANKEntities">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="TUIBANKModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="Customer" ColumnName="Customer" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="Interest" ColumnName="Interest" />
+          <ScalarProperty Name="Period" ColumnName="Period" />
+          <ScalarProperty Name="Balance" ColumnName="Balance" />
+          <ScalarProperty Name="Branch" ColumnName="Branch" />
+          <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Branches">
+      <EntityTypeMapping TypeName="TUIBANKModel.Branch">
+        <MappingFragment StoreEntitySet="Branch">
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="TUIBANKModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Branch" ColumnName="Branch" />
+          <ScalarProperty Name="PID" ColumnName="PID" />
+          <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Staffs">
+      <EntityTypeMapping TypeName="TUIBANKModel.Staff">
+        <MappingFragment StoreEntitySet="Staff">
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PID" ColumnName="PID" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Branch" ColumnName="Branch" />
+          <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_add_Account" FunctionName="TUIBANKModel.Store.sp_add_Account" />
+    <FunctionImportMapping FunctionImportName="sp_add_Customer" FunctionName="TUIBANKModel.Store.sp_add_Customer" />
+    <FunctionImportMapping FunctionImportName="sp_add_Staff" FunctionName="TUIBANKModel.Store.sp_add_Staff" />
+    <FunctionImportMapping FunctionImportName="sp_delete_Account" FunctionName="TUIBANKModel.Store.sp_delete_Account" />
+    <FunctionImportMapping FunctionImportName="sp_delete_Customer" FunctionName="TUIBANKModel.Store.sp_delete_Customer" />
+    <FunctionImportMapping FunctionImportName="sp_delete_staff" FunctionName="TUIBANKModel.Store.sp_delete_staff" />
+    <FunctionImportMapping FunctionImportName="sp_send_money" FunctionName="TUIBANKModel.Store.sp_send_money" />
+    <FunctionImportMapping FunctionImportName="sp_update_Account" FunctionName="TUIBANKModel.Store.sp_update_Account" />
+    <FunctionImportMapping FunctionImportName="sp_update_Account_balance" FunctionName="TUIBANKModel.Store.sp_update_Account_balance" />
+    <FunctionImportMapping FunctionImportName="sp_update_Customer" FunctionName="TUIBANKModel.Store.sp_update_Customer" />
+    <FunctionImportMapping FunctionImportName="sp_update_Staff" FunctionName="TUIBANKModel.Store.sp_update_Staff" />
+  </EntityContainerMapping>
+</Mapping>
