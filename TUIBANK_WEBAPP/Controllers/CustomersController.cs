@@ -134,5 +134,19 @@ namespace TUIBANK_WEBAPP.Controllers
         {
             return View();
         }
+
+        // GET: Index_Edit
+        public ActionResult Index_Edit()
+        {
+            var customers = db.Customers.Include(c => c.Branch1);
+            return View(customers.ToList());
+        }
+
+        // GET: Index_Delete
+        public ActionResult Index_Delete()
+        {
+            var customers = db.Customers.Include(c => c.Branch1);
+            return View(customers.ToList());
+        }
     }
 }

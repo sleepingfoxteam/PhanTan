@@ -178,6 +178,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Icons\back_cute.ico" />
     <Content Include="Icons\cross_cute.ico" />
     <Content Include="Icons\pencil_cute.ico" />
     <Content Include="Icons\plus_cute.ico" />
@@ -257,6 +258,8 @@
     <Content Include="Views\Customers\Main.cshtml" />
     <Content Include="Views\Accounts\Index_Edit.cshtml" />
     <Content Include="Views\Accounts\Index_Delete.cshtml" />
+    <Content Include="Views\Customers\Index_Edit.cshtml" />
+    <Content Include="Views\Customers\Index_Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
