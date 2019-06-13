@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Account";
+}
+
+<div class="main-big-container">
+    <div class="btn-container">
+        <div class="btn-item">
+            <div class="btn-img">
+                <a href="@Url.Action("Create","Accounts")">
+                    <img src="~/Icons/plus_cute.ico"/>
+                </a>
+            </div>
+            <span>Tao Tai Khoan</span>
+        </div>
+        <div class="btn-item">
+            <div class="btn-img">
+                <a href="@Url.Action("Send","Accounts")">
+                    <img src="~/Icons/send_cute.ico" />
+                </a>
+            </div>
+            <span>Chuyen Tien</span>
+        </div>
+        <div class="btn-item">
+            <div class="btn-img">
+                <a href="@Url.Action("Index_Edit","Accounts")">
+                    <img src="~/Icons/pencil_cute.ico" />
+                </a>
+            </div>
+            <span>Chinh Sua Tai Khoan</span>
+        </div>
+        <div class="btn-item">
+            <div class="btn-img">
+                <a href="@Url.Action("Index_Delete","Accounts")">
+                    <img src="~/Icons/cross_cute.ico" />
+                </a>
+            </div>
+            <span>Xoa Tai Khoan</span>
+        </div>
+    </div>
+</div>
+

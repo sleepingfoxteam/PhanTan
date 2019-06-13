@@ -90,7 +90,10 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <a href="@Url.Action("Index_Edit","Accounts")">
+        <img src="~/Icons/back_cute.ico" style="width:32px; height: 32px;" />
+        Back To List
+    </a>
 </div>
 
 @section Scripts {

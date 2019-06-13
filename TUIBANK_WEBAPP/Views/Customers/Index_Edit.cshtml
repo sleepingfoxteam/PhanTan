@@ -1,0 +1,77 @@
+﻿@model IEnumerable<TUIBANK_WEBAPP.Models.Customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a href="@Url.Action("Create","Customers")">
+        <img src="~/Icons/plus_cute.ico" /> Create New
+    </a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Birthday)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rowguid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Branch1.BranchName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.CustomerID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FullName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Birthday)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Address)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PhoneNumber)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.rowguid)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Branch1.BranchName)
+    </td>
+    <td>
+        <a href="@Url.Action("Edit","Customers", new { id = item.CustomerID})">
+            <img src="~/Icons/pencil_cute.ico" style="width:20px; height:20px;"/>
+        </a>
+    </td>
+</tr>
+}
+
+</table>
