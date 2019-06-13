@@ -138,5 +138,25 @@ namespace TUIBANK_WEBAPP.Controllers
         {
             return View();
         }
+
+        // GET: Send
+        public ActionResult Send()
+        {
+            return View();
+        }
+
+        // GET: Index_Edit
+        public ActionResult Index_Edit()
+        {
+            var accounts = db.Accounts.Include(a => a.Branch1).Include(a => a.Customer1);
+            return View(accounts.ToList());
+        }
+
+        // GET: Index_Delete
+        public ActionResult Index_Delete()
+        {
+            var accounts = db.Accounts.Include(a => a.Branch1).Include(a => a.Customer1);
+            return View(accounts.ToList());
+        }
     }
 }

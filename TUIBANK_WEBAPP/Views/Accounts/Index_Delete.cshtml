@@ -73,9 +73,9 @@
         @Html.DisplayFor(modelItem => item.Customer1.FullName)
     </td>
     <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.AccountID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.AccountID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.AccountID })
+        <a href="@Url.Action("Delete","Accounts",new { id = item.AccountID})">
+            <img src="~/Icons/cross_cute.ico" style="width: 20px; height: 20px;"/>
+        </a>
     </td>
 </tr>
 }

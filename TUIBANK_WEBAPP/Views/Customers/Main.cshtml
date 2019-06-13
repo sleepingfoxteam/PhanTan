@@ -1,7 +1,33 @@
-﻿
-@{
-    ViewBag.Title = "Main";
+﻿@{
+    ViewBag.Title = "Account";
 }
 
-<h2>Main</h2>
+<div class="main-big-container">
+    <div class="btn-container">
+        <div class="btn-item">
+            <div class="btn-img">
+                <a href="@Url.Action("Create","Customers")">
+                    <img src="~/Icons/plus_cute.ico"/>
+                </a>
+            </div>
+            <span>Them Khach Hang</span>
+        </div>
+        <div class="btn-item">
+            <div class="btn-img">
+                <a href="@Url.Action("Index","Customers")">
+                    <img src="~/Icons/pencil_cute.ico" />
+                </a>
+            </div>
+            <span>Cap Nhat Thong Tin Khach Hang</span>
+        </div>
+        <div class="btn-item">
+            <div class="btn-img">
+                <a href="@Url.Action("Index","Customers")">
+                    <img src="~/Icons/cross_cute.ico" />
+                </a>
+            </div>
+            <span>Xoa Khach Hang</span>
+        </div>
+    </div>
+</div>
 

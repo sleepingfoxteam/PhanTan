@@ -3,10 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TUIBANK</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/master.css")
+    @Styles.Render("~/Content/mainpage.css")
 </head>
 <body>
     <div class="my-nav">
@@ -21,7 +22,6 @@
     </div>
     <div class="my-body" style="padding: 2em;">
         @RenderBody()
-        body
     </div>
     <footer>&copy; TUIBANK - 2019</footer>
     @Scripts.Render("~/bundles/jquery")
