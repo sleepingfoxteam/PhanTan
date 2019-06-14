@@ -18,7 +18,7 @@ function initBtnSendMoney() {
                 recive_account
             },
             success: function (result) {
-                if (result == -1) {
+                if (result === "-1") {
                     alert("khong giao dich duoc");
                 }
                 else {
@@ -71,7 +71,7 @@ function findAccountInfor(accountnumber,callback) {
             accountnumber
         },
         success: function (result) {
-            if (result === -1) {
+            if (result === '-1') {
                 alert("khong tim thay tai khoan");
             }
             else {

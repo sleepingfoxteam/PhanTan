@@ -181,5 +181,10 @@ namespace TUIBANK_WEBAPP.Controllers
             int result = db.sp_send_money(send_account, recive_account, money);
             return result;
         }
+
+        public ActionResult Calculator()
+        {
+            return View();
+        }
     }
 }
