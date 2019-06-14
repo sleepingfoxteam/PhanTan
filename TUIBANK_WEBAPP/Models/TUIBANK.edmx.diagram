@@ -12,6 +12,7 @@
         <AssociationConnector Association="TUIBANKModel.FK_Account_Branch" ManuallyRouted="false" />
         <AssociationConnector Association="TUIBANKModel.FK_Account_Customer" ManuallyRouted="false" />
         <AssociationConnector Association="TUIBANKModel.FK_Customer_Branch" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TUIBANKModel.View_Customer_Account" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

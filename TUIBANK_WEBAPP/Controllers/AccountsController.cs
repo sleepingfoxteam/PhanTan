@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -142,7 +143,8 @@ namespace TUIBANK_WEBAPP.Controllers
         // GET: Send
         public ActionResult Send()
         {
-            return View();
+            var viewdata = db.View_Customer_Account;
+            return View(viewdata.ToList());
         }
 
         // GET: Index_Edit
@@ -157,6 +159,27 @@ namespace TUIBANK_WEBAPP.Controllers
         {
             var accounts = db.Accounts.Include(a => a.Branch1).Include(a => a.Customer1);
             return View(accounts.ToList());
+        }
+
+        public dynamic findAccountInfor()
+        {
+            string accountnumber = Request["accountnumber"];
+            var information = db.sp_find_account_info(accountnumber);
+            if(information != null)
+            {
+                string json_data = JsonConvert.SerializeObject(information.ToList().ElementAt(0));
+                return json_data;
+            }
+            return -1;
+        }
+        [HttpPost]
+        public dynamic SendMoney()
+        {
+            int money = Int32.Parse(Request["money"]);
+            string send_account = Request["send_account"];
+            string recive_account = Request["recive_account"];
+            int result = db.sp_send_money(send_account, recive_account, money);
+            return result;
         }
     }
 }

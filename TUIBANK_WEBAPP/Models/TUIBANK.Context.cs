@@ -31,6 +31,7 @@ namespace TUIBANK_WEBAPP.Models
         public virtual DbSet<Branch> Branches { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Staff> Staffs { get; set; }
+        public virtual DbSet<View_Customer_Account> View_Customer_Account { get; set; }
     
         public virtual int sp_add_Account(string customer, Nullable<System.DateTime> startdate, Nullable<System.DateTime> enddate, Nullable<double> interest, Nullable<int> period, Nullable<int> balance, string branch)
         {
@@ -261,6 +262,24 @@ namespace TUIBANK_WEBAPP.Models
                 new ObjectParameter("phone", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_update_Staff", idParameter, fullnameParameter, birthdayParameter, addressParameter, pidParameter, phoneParameter);
+        }
+    
+        public virtual ObjectResult<sp_find_account_info_Result> sp_find_account_info(string accountnumber)
+        {
+            var accountnumberParameter = accountnumber != null ?
+                new ObjectParameter("accountnumber", accountnumber) :
+                new ObjectParameter("accountnumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_find_account_info_Result>("sp_find_account_info", accountnumberParameter);
+        }
+    
+        public virtual int sp_get_balance(string accountnumber)
+        {
+            var accountnumberParameter = accountnumber != null ?
+                new ObjectParameter("accountnumber", accountnumber) :
+                new ObjectParameter("accountnumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_get_balance", accountnumberParameter);
         }
     }
 }

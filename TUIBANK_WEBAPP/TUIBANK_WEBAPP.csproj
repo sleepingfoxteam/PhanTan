@@ -146,6 +146,9 @@
     <Compile Include="Models\Customer.cs">
       <DependentUpon>TUIBANK.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_find_account_info_Result.cs">
+      <DependentUpon>TUIBANK.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Staff.cs">
       <DependentUpon>TUIBANK.tt</DependentUpon>
     </Compile>
@@ -163,6 +166,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TUIBANK.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_Customer_Account.cs">
+      <DependentUpon>TUIBANK.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -217,6 +223,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\sendMoney.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

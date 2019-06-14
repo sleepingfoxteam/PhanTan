@@ -64,5 +64,26 @@
     <FunctionImportMapping FunctionImportName="sp_update_Account_balance" FunctionName="TUIBANKModel.Store.sp_update_Account_balance" />
     <FunctionImportMapping FunctionImportName="sp_update_Customer" FunctionName="TUIBANKModel.Store.sp_update_Customer" />
     <FunctionImportMapping FunctionImportName="sp_update_Staff" FunctionName="TUIBANKModel.Store.sp_update_Staff" />
+    <EntitySetMapping Name="View_Customer_Account">
+      <EntityTypeMapping TypeName="TUIBANKModel.View_Customer_Account">
+        <MappingFragment StoreEntitySet="View_Customer_Account">
+          <ScalarProperty Name="branchname" ColumnName="branchname" />
+          <ScalarProperty Name="accountbalance" ColumnName="accountbalance" />
+          <ScalarProperty Name="accountnumber" ColumnName="accountnumber" />
+          <ScalarProperty Name="customername" ColumnName="customername" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_find_account_info" FunctionName="TUIBANKModel.Store.sp_find_account_info">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TUIBANKModel.sp_find_account_info_Result">
+          <ScalarProperty Name="customername" ColumnName="customername" />
+          <ScalarProperty Name="accountnumber" ColumnName="accountnumber" />
+          <ScalarProperty Name="accountbalance" ColumnName="accountbalance" />
+          <ScalarProperty Name="branchname" ColumnName="branchname" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_get_balance" FunctionName="TUIBANKModel.Store.sp_get_balance" />
   </EntityContainerMapping>
 </Mapping>

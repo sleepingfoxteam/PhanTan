@@ -116,12 +116,26 @@ h2{
     right: 0;
 }
 
-.btn{
+.btn {
     padding: 1em 2em;
     background: white;
     color: black;
     transition: 0.4s;
+    border-radius: 0px;
 }
+
+@each $key,$value in $colors {
+    .btn-border-#{$key} {
+        border: 1px solid $value;
+        transition: 0.4s;
+        &:hover{
+            background: $value;
+            color: white;
+            border: 1px solid white;
+        }
+    }
+}
+
 
 .logo{
     @include bungee;

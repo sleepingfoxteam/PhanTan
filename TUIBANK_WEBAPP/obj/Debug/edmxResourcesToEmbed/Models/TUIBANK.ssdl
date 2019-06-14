@@ -48,6 +48,19 @@
     <Property Name="Branch" Type="nvarchar" MaxLength="50" />
     <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TUIBANK.dbo.View_Customer_Account' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_Customer_Account">
+    <Key>
+      <PropertyRef Name="customername" />
+      <PropertyRef Name="accountnumber" />
+      <PropertyRef Name="accountbalance" />
+    </Key>
+    <Property Name="customername" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="accountnumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="accountbalance" Type="int" Nullable="false" />
+    <Property Name="branchname" Type="nvarchar" MaxLength="200" />
+  </EntityType>
   <Association Name="FK_Account_Branch">
     <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
     <End Role="Account" Type="Self.Account" Multiplicity="*" />
@@ -120,6 +133,12 @@
   <Function Name="sp_delete_staff" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="sp_find_account_info" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="accountnumber" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_get_balance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="accountnumber" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="sp_send_money" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="sourceaccount" Type="nvarchar" Mode="In" />
     <Parameter Name="destinationaccount" Type="nvarchar" Mode="In" />
@@ -157,6 +176,14 @@
     <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="View_Customer_Account" EntityType="Self.View_Customer_Account" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_Customer_Account].[customername] AS [customername], 
+    [View_Customer_Account].[accountnumber] AS [accountnumber], 
+    [View_Customer_Account].[accountbalance] AS [accountbalance], 
+    [View_Customer_Account].[branchname] AS [branchname]
+    FROM [dbo].[View_Customer_Account] AS [View_Customer_Account]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_Account_Branch" Association="Self.FK_Account_Branch">
       <End Role="Branch" EntitySet="Branch" />
       <End Role="Account" EntitySet="Account" />
