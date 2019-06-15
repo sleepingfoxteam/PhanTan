@@ -124,6 +124,35 @@ namespace TUIBANK_WEBAPP.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_add_Staff", fullnameParameter, birthdayParameter, addressParameter, pidParameter, phoneParameter, branchParameter);
         }
     
+        public virtual int sp_add_Staff_manager(string fullname, Nullable<System.DateTime> birthday, string address, string pid, string phone, string branch)
+        {
+            var fullnameParameter = fullname != null ?
+                new ObjectParameter("fullname", fullname) :
+                new ObjectParameter("fullname", typeof(string));
+    
+            var birthdayParameter = birthday.HasValue ?
+                new ObjectParameter("birthday", birthday) :
+                new ObjectParameter("birthday", typeof(System.DateTime));
+    
+            var addressParameter = address != null ?
+                new ObjectParameter("address", address) :
+                new ObjectParameter("address", typeof(string));
+    
+            var pidParameter = pid != null ?
+                new ObjectParameter("pid", pid) :
+                new ObjectParameter("pid", typeof(string));
+    
+            var phoneParameter = phone != null ?
+                new ObjectParameter("phone", phone) :
+                new ObjectParameter("phone", typeof(string));
+    
+            var branchParameter = branch != null ?
+                new ObjectParameter("branch", branch) :
+                new ObjectParameter("branch", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_add_Staff_manager", fullnameParameter, birthdayParameter, addressParameter, pidParameter, phoneParameter, branchParameter);
+        }
+    
         public virtual int sp_delete_Account(string id)
         {
             var idParameter = id != null ?
@@ -149,6 +178,38 @@ namespace TUIBANK_WEBAPP.Models
                 new ObjectParameter("id", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_delete_staff", idParameter);
+        }
+    
+        public virtual ObjectResult<sp_find_account_Result> sp_find_account(string accountnumber)
+        {
+            var accountnumberParameter = accountnumber != null ?
+                new ObjectParameter("accountnumber", accountnumber) :
+                new ObjectParameter("accountnumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_find_account_Result>("sp_find_account", accountnumberParameter);
+        }
+    
+        public virtual ObjectResult<sp_find_account_info_Result> sp_find_account_info(string accountnumber)
+        {
+            var accountnumberParameter = accountnumber != null ?
+                new ObjectParameter("accountnumber", accountnumber) :
+                new ObjectParameter("accountnumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_find_account_info_Result>("sp_find_account_info", accountnumberParameter);
+        }
+    
+        public virtual int sp_get_balance(string accountnumber)
+        {
+            var accountnumberParameter = accountnumber != null ?
+                new ObjectParameter("accountnumber", accountnumber) :
+                new ObjectParameter("accountnumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_get_balance", accountnumberParameter);
+        }
+    
+        public virtual ObjectResult<sp_get_role_Result> sp_get_role()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_get_role_Result>("sp_get_role");
         }
     
         public virtual int sp_send_money(string sourceaccount, string destinationaccount, Nullable<int> money)
@@ -262,33 +323,6 @@ namespace TUIBANK_WEBAPP.Models
                 new ObjectParameter("phone", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_update_Staff", idParameter, fullnameParameter, birthdayParameter, addressParameter, pidParameter, phoneParameter);
-        }
-    
-        public virtual ObjectResult<sp_find_account_info_Result> sp_find_account_info(string accountnumber)
-        {
-            var accountnumberParameter = accountnumber != null ?
-                new ObjectParameter("accountnumber", accountnumber) :
-                new ObjectParameter("accountnumber", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_find_account_info_Result>("sp_find_account_info", accountnumberParameter);
-        }
-    
-        public virtual int sp_get_balance(string accountnumber)
-        {
-            var accountnumberParameter = accountnumber != null ?
-                new ObjectParameter("accountnumber", accountnumber) :
-                new ObjectParameter("accountnumber", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_get_balance", accountnumberParameter);
-        }
-    
-        public virtual ObjectResult<sp_find_account_Result> sp_find_account(string accountnumber)
-        {
-            var accountnumberParameter = accountnumber != null ?
-                new ObjectParameter("accountnumber", accountnumber) :
-                new ObjectParameter("accountnumber", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_find_account_Result>("sp_find_account", accountnumberParameter);
         }
     }
 }

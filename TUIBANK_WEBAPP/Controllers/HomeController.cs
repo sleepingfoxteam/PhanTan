@@ -8,9 +8,15 @@ namespace TUIBANK_WEBAPP.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string role)
         {
-            return View();
+
+            if (role != null)
+            {
+                Session["role"] = role;
+                return View();
+            }
+            return View("RoleEx","~/Views/Shared/_empty_layout.cshtml");
         }
 
         public ActionResult About()

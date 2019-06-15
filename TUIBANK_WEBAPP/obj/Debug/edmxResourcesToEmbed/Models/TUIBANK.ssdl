@@ -124,6 +124,14 @@ warning 6002: The table/view 'TUIBANK.dbo.View_Customer_Account' does not have a
     <Parameter Name="phone" Type="nvarchar" Mode="In" />
     <Parameter Name="branch" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="sp_add_Staff_manager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fullname" Type="nvarchar" Mode="In" />
+    <Parameter Name="birthday" Type="date" Mode="In" />
+    <Parameter Name="address" Type="text" Mode="In" />
+    <Parameter Name="pid" Type="nvarchar" Mode="In" />
+    <Parameter Name="phone" Type="nvarchar" Mode="In" />
+    <Parameter Name="branch" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="sp_delete_Account" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="nvarchar" Mode="In" />
   </Function>
@@ -142,6 +150,7 @@ warning 6002: The table/view 'TUIBANK.dbo.View_Customer_Account' does not have a
   <Function Name="sp_get_balance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="accountnumber" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="sp_get_role" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_send_money" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="sourceaccount" Type="nvarchar" Mode="In" />
     <Parameter Name="destinationaccount" Type="nvarchar" Mode="In" />

@@ -8,7 +8,7 @@
             </div>
             <div class="col-sm-6">
                 <h2 style="text-align:center;">Login</h2>
-                <form class="form-dangnhap">
+                <form class="form-dangnhap" action="../../../Login/Login" method="post">
                     <div class="form-group">
                         <label for="#username">Username</label>
                         <input type="text" class="form-control" name="username" id="username" placeholder="Username"/>
@@ -17,7 +17,14 @@
                         <label for="#password">Password</label>
                         <input type="password" class="form-control" name="password" id="password" placeholder="Password"/>
                     </div>
-                    <button class="btn" type="button" role="button">Dang Nhap</button>
+                    <div class="form-group">
+                        <label for="#branch">Branch</label>
+                        <select class="form-control" id="branch" name="branch">
+                            <option value="BRHCM">Ho Chi Minh</option>
+                            <option value="BRHNO">Ha Noi</option>
+                        </select>
+                    </div>
+                    <button class="btn" role="button">Dang Nhap</button>
                 </form>
             </div>
         </div>

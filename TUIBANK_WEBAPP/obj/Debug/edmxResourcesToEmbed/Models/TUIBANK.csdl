@@ -54,6 +54,17 @@
     <Property Name="Branch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="rowguid" Type="Guid" Nullable="false" />
   </EntityType>
+  <EntityType Name="View_Customer_Account">
+    <Key>
+      <PropertyRef Name="customername" />
+      <PropertyRef Name="accountnumber" />
+      <PropertyRef Name="accountbalance" />
+    </Key>
+    <Property Name="customername" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="accountnumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="accountbalance" Type="Int32" Nullable="false" />
+    <Property Name="branchname" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
   <Association Name="FK_Account_Branch">
     <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
     <End Role="Account" Type="Self.Account" Multiplicity="*" />
@@ -97,6 +108,7 @@
     <EntitySet Name="Branches" EntityType="Self.Branch" />
     <EntitySet Name="Customers" EntityType="Self.Customer" />
     <EntitySet Name="Staffs" EntityType="Self.Staff" />
+    <EntitySet Name="View_Customer_Account" EntityType="Self.View_Customer_Account" />
     <AssociationSet Name="FK_Account_Branch" Association="Self.FK_Account_Branch">
       <End Role="Branch" EntitySet="Branches" />
       <End Role="Account" EntitySet="Accounts" />
@@ -134,6 +146,14 @@
       <Parameter Name="phone" Mode="In" Type="String" />
       <Parameter Name="branch" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="sp_add_Staff_manager">
+      <Parameter Name="fullname" Mode="In" Type="String" />
+      <Parameter Name="birthday" Mode="In" Type="DateTime" />
+      <Parameter Name="address" Mode="In" Type="String" />
+      <Parameter Name="pid" Mode="In" Type="String" />
+      <Parameter Name="phone" Mode="In" Type="String" />
+      <Parameter Name="branch" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="sp_delete_Account">
       <Parameter Name="id" Mode="In" Type="String" />
     </FunctionImport>
@@ -143,6 +163,16 @@
     <FunctionImport Name="sp_delete_staff">
       <Parameter Name="id" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="sp_find_account" ReturnType="Collection(TUIBANKModel.sp_find_account_Result)">
+      <Parameter Name="accountnumber" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_find_account_info" ReturnType="Collection(TUIBANKModel.sp_find_account_info_Result)">
+      <Parameter Name="accountnumber" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_get_balance">
+      <Parameter Name="accountnumber" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_get_role" ReturnType="Collection(TUIBANKModel.sp_get_role_Result)" />
     <FunctionImport Name="sp_send_money">
       <Parameter Name="sourceaccount" Mode="In" Type="String" />
       <Parameter Name="destinationaccount" Mode="In" Type="String" />
@@ -175,39 +205,21 @@
       <Parameter Name="pid" Mode="In" Type="String" />
       <Parameter Name="phone" Mode="In" Type="String" />
     </FunctionImport>
-    <EntitySet Name="View_Customer_Account" EntityType="TUIBANKModel.View_Customer_Account" />
-    <FunctionImport Name="sp_find_account_info" ReturnType="Collection(TUIBANKModel.sp_find_account_info_Result)">
-      <Parameter Name="accountnumber" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="sp_get_balance">
-      <Parameter Name="accountnumber" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="sp_find_account" ReturnType="Collection(TUIBANKModel.sp_find_account_Result)">
-      <Parameter Name="accountnumber" Mode="In" Type="String" />
-    </FunctionImport>
   </EntityContainer>
-  <EntityType Name="View_Customer_Account">
-    <Key>
-      <PropertyRef Name="customername" />
-      <PropertyRef Name="accountnumber" />
-      <PropertyRef Name="accountbalance" />
-    </Key>
-    <Property Name="customername" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="accountnumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="accountbalance" Type="Int32" Nullable="false" />
-    <Property Name="branchname" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <ComplexType Name="sp_find_account_info_Result">
-    <Property Type="String" Name="customername" Nullable="false" MaxLength="200" />
-    <Property Type="String" Name="accountnumber" Nullable="false" MaxLength="50" />
-    <Property Type="Int32" Name="accountbalance" Nullable="false" />
-    <Property Type="String" Name="branchname" Nullable="true" MaxLength="200" />
-  </ComplexType>
   <ComplexType Name="sp_find_account_Result">
     <Property Type="String" Name="accountnumber" Nullable="false" MaxLength="50" />
     <Property Type="Int32" Name="accountbalance" Nullable="false" />
     <Property Type="Int32" Name="accountperiod" Nullable="true" />
     <Property Type="Double" Name="accountinterest" Nullable="true" />
     <Property Type="DateTime" Name="accountstartdate" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_find_account_info_Result">
+    <Property Type="String" Name="customername" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="accountnumber" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="accountbalance" Nullable="false" />
+    <Property Type="String" Name="branchname" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="sp_get_role_Result">
+    <Property Type="String" Name="rolename" Nullable="false" MaxLength="128" />
   </ComplexType>
 </Schema>
