@@ -48,13 +48,16 @@ namespace TUIBANK_WEBAPP.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CustomerID,FullName,Birthday,Address,PhoneNumber,Branch,PID,rowguid")] Customer customer)
+        public ActionResult Create([Bind(Include = "FullName,Birthday,Address,PhoneNumber,Branch,PID")] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                db.Customers.Add(customer);
+                //default function
+                //db.Customers.Add(customer);
+                //use store procedure
+                db.sp_add_Customer(customer.FullName, customer.Birthday, customer.Address, customer.PhoneNumber, customer.Branch, customer.PID);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index_Edit");
             }
 
             ViewBag.Branch = new SelectList(db.Branches, "BranchID", "BranchName", customer.Branch);
@@ -86,9 +89,10 @@ namespace TUIBANK_WEBAPP.Controllers
         {
             if (ModelState.IsValid)
             {
+                // defult function
                 db.Entry(customer).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index_Edit");
             }
             ViewBag.Branch = new SelectList(db.Branches, "BranchID", "BranchName", customer.Branch);
             return View(customer);
@@ -117,7 +121,7 @@ namespace TUIBANK_WEBAPP.Controllers
             Customer customer = db.Customers.Find(id);
             db.Customers.Remove(customer);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index_Delete");
         }
 
         protected override void Dispose(bool disposing)

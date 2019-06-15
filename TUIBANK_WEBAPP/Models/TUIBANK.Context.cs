@@ -33,7 +33,7 @@ namespace TUIBANK_WEBAPP.Models
         public virtual DbSet<Staff> Staffs { get; set; }
         public virtual DbSet<View_Customer_Account> View_Customer_Account { get; set; }
     
-        public virtual int sp_add_Account(string customer, Nullable<System.DateTime> startdate, Nullable<System.DateTime> enddate, Nullable<double> interest, Nullable<int> period, Nullable<int> balance, string branch)
+        public virtual int sp_add_Account(string customer, Nullable<System.DateTime> startdate, Nullable<System.DateTime> enddate, Nullable<double> interest, Nullable<int> period, Nullable<long> balance, string branch)
         {
             var customerParameter = customer != null ?
                 new ObjectParameter("customer", customer) :

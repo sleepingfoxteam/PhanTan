@@ -50,13 +50,15 @@ namespace TUIBANK_WEBAPP.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AccountID,Customer,StartDate,EndDate,Interest,Period,Balance,Branch,rowguid")] Account account)
+        public ActionResult Create([Bind(Include = "Customer,StartDate,EndDate,Interest,Period,Balance,Branch")] Account account)
         {
             if (ModelState.IsValid)
             {
-                db.Accounts.Add(account);
+                // default function to add into database
+                //db.Accounts.Add(account);
+                db.sp_add_Account(account.Customer, account.StartDate, null, account.Interest, account.Period, account.Balance, account.Branch);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index_Edit");
             }
 
             ViewBag.Branch = new SelectList(db.Branches, "BranchID", "BranchName", account.Branch);
@@ -90,9 +92,12 @@ namespace TUIBANK_WEBAPP.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(account).State = EntityState.Modified;
+                // default function to update information
+                // db.Entry(account).State = EntityState.Modified;
+                // use seft define store procedure
+                db.sp_update_Account(account.AccountID, account.Period, account.Interest, account.Balance, account.StartDate, account.EndDate);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index_Edit");
             }
             ViewBag.Branch = new SelectList(db.Branches, "BranchID", "BranchName", account.Branch);
             ViewBag.Customer = new SelectList(db.Customers, "CustomerID", "FullName", account.Customer);
@@ -120,9 +125,10 @@ namespace TUIBANK_WEBAPP.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             Account account = db.Accounts.Find(id);
+            // default function
             db.Accounts.Remove(account);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index_Delete");
         }
 
         protected override void Dispose(bool disposing)

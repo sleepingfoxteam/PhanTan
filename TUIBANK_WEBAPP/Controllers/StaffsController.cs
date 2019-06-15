@@ -46,13 +46,15 @@ namespace TUIBANK_WEBAPP.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "StaffID,FullName,Birthday,Address,PID,PhoneNumber,Branch,rowguid")] Staff staff)
+        public ActionResult Create([Bind(Include = "FullName,Birthday,Address,PID,PhoneNumber,Branch,rowguid")] Staff staff)
         {
             if (ModelState.IsValid)
             {
-                db.Staffs.Add(staff);
+                //default function
+                //db.Staffs.Add(staff);
+                db.sp_add_Staff(staff.FullName, staff.Birthday, staff.Address, staff.PID, staff.PhoneNumber, staff.Branch);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index_Edit");
             }
 
             return View(staff);
@@ -84,7 +86,7 @@ namespace TUIBANK_WEBAPP.Controllers
             {
                 db.Entry(staff).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index_Edit");
             }
             return View(staff);
         }
@@ -110,9 +112,11 @@ namespace TUIBANK_WEBAPP.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             Staff staff = db.Staffs.Find(id);
-            db.Staffs.Remove(staff);
+            // default function
+            // db.Staffs.Remove(staff);
+            db.sp_delete_staff(staff.StaffID);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index_Delete");
         }
 
         protected override void Dispose(bool disposing)

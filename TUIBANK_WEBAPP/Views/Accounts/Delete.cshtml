@@ -1,5 +1,4 @@
 ﻿@model TUIBANK_WEBAPP.Models.Account
-
 @{
     ViewBag.Title = "Delete";
 }
@@ -77,15 +76,16 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-<div class="form-actions no-color">
-    <input type="submit" value="Delete" class="btn btn-default" /> |
-    <a href="@Url.Action("Index_Delete","Accounts")">
-        <img src="~/Icons/back_cute.ico" style="width:32px; height: 32px;" />
-        Back To List
-    </a>
-</div>
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a href="@Url.Action("Index_Delete","Accounts")">
+                <img src="~/Icons/back_cute.ico" style="width:32px; height: 32px;" />
+                Back To List
+            </a>
+        </div>
     }
 </div>
