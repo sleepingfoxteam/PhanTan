@@ -149,6 +149,9 @@
     <Compile Include="Models\sp_find_account_info_Result.cs">
       <DependentUpon>TUIBANK.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_find_account_Result.cs">
+      <DependentUpon>TUIBANK.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Staff.cs">
       <DependentUpon>TUIBANK.tt</DependentUpon>
     </Compile>
@@ -214,6 +217,7 @@
     <Content Include="Content\login.scss" />
     <Content Include="Content\mainpage.scss" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\calculator.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -269,6 +273,9 @@
     <Content Include="Views\Customers\Index_Edit.cshtml" />
     <Content Include="Views\Customers\Index_Delete.cshtml" />
     <Content Include="Views\Accounts\Calculator.cshtml" />
+    <Content Include="Views\Staffs\Main.cshtml" />
+    <Content Include="Views\Staffs\Index_Delete.cshtml" />
+    <Content Include="Views\Staffs\Index_Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

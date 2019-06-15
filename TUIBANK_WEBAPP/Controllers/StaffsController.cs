@@ -123,5 +123,20 @@ namespace TUIBANK_WEBAPP.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult Main()
+        {
+            return View();
+        }
+
+        public ActionResult Index_Delete()
+        {
+            return View(db.Staffs.ToList());
+        }
+
+        public ActionResult Index_Edit()
+        {
+            return View(db.Staffs.ToList());
+        }
     }
 }

@@ -172,6 +172,18 @@ namespace TUIBANK_WEBAPP.Controllers
             }
             return -1;
         }
+        public dynamic findAccountInforMore()
+        {
+            string accountnumber = Request["accountnumber"];
+            var information = db.sp_find_account(accountnumber);
+            if (information != null)
+            {
+                string json_data = JsonConvert.SerializeObject(information.ToList().ElementAt(0));
+                return json_data;
+            }
+            return -1;
+        }
+
         [HttpPost]
         public dynamic SendMoney()
         {
@@ -185,6 +197,34 @@ namespace TUIBANK_WEBAPP.Controllers
         public ActionResult Calculator()
         {
             return View();
+        }
+
+        public dynamic Calculate()
+        {
+            int period, balance;
+            float interest;
+            Int32.TryParse(Request["period"], out period);
+            Int32.TryParse(Request["balance"], out balance);
+            float.TryParse(Request["interest"], out interest);
+            float interest_per_period = interest/ 100 / 365 * 30 * period;
+            DateTime today = DateTime.Today;
+            string startdate_string = Request["startdate"];
+            startdate_string = startdate_string.Split('T')[0];
+            DateTime startdate;
+            DateTime.TryParse(startdate_string, out startdate);
+            int diff_days = (today - startdate).Days;
+            int diff_months = diff_days / 30;
+            Dictionary<Int64, Int64> dic_cal = new Dictionary<long, long>();
+            dic_cal.Clear();
+            Int64 balance_temp = balance;
+            while (diff_months > period)
+            {
+                Int64 cal = (Int64)(balance_temp * interest_per_period);
+                dic_cal.Add(balance_temp, cal);
+                balance_temp = balance_temp + cal;
+                diff_months -= period;
+            }
+            return JsonConvert.SerializeObject(dic_cal);
         }
     }
 }

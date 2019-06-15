@@ -72,9 +72,11 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+<div class="btn-group">
+    <input type="submit" value="Delete" class="btn btn-border-black" /> |
+    <a href="@Url.Action("Index_Edit","Staffs")">
+        <img src="~/Icons/back_cute.ico" /> Back to List
+    </a>
+</div>
     }
 </div>

@@ -281,5 +281,14 @@ namespace TUIBANK_WEBAPP.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_get_balance", accountnumberParameter);
         }
+    
+        public virtual ObjectResult<sp_find_account_Result> sp_find_account(string accountnumber)
+        {
+            var accountnumberParameter = accountnumber != null ?
+                new ObjectParameter("accountnumber", accountnumber) :
+                new ObjectParameter("accountnumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_find_account_Result>("sp_find_account", accountnumberParameter);
+        }
     }
 }

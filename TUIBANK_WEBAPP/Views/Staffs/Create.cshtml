@@ -88,7 +88,9 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <a href="@Url.Action("Main","Staffs")">
+        <img src="~/Icons/back_cute.ico" /> Back to List
+    </a>
 </div>
 
 @section Scripts {

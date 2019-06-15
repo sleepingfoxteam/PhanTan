@@ -182,6 +182,9 @@
     <FunctionImport Name="sp_get_balance">
       <Parameter Name="accountnumber" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="sp_find_account" ReturnType="Collection(TUIBANKModel.sp_find_account_Result)">
+      <Parameter Name="accountnumber" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="View_Customer_Account">
     <Key>
@@ -199,5 +202,12 @@
     <Property Type="String" Name="accountnumber" Nullable="false" MaxLength="50" />
     <Property Type="Int32" Name="accountbalance" Nullable="false" />
     <Property Type="String" Name="branchname" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="sp_find_account_Result">
+    <Property Type="String" Name="accountnumber" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="accountbalance" Nullable="false" />
+    <Property Type="Int32" Name="accountperiod" Nullable="true" />
+    <Property Type="Double" Name="accountinterest" Nullable="true" />
+    <Property Type="DateTime" Name="accountstartdate" Nullable="false" />
   </ComplexType>
 </Schema>

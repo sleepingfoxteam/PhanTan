@@ -133,6 +133,9 @@ warning 6002: The table/view 'TUIBANK.dbo.View_Customer_Account' does not have a
   <Function Name="sp_delete_staff" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="sp_find_account" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="accountnumber" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="sp_find_account_info" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="accountnumber" Type="nvarchar" Mode="In" />
   </Function>

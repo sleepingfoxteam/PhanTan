@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Customer";
+}
+
+<div class="main-big-container">
+    <div class="btn-container">
+        <div class="btn-item">
+            <div class="btn-img">
+                <a href="@Url.Action("Create","Staffs")">
+                    <img src="~/Icons/plus_cute.ico"/>
+                </a>
+            </div>
+            <span>Them Nhan Vien</span>
+        </div>
+        <div class="btn-item">
+            <div class="btn-img">
+                <a href="@Url.Action("Index_Edit","Staffs")">
+                    <img src="~/Icons/pencil_cute.ico" />
+                </a>
+            </div>
+            <span>Cap Nhat Thong Tin Nhan Vien</span>
+        </div>
+        <div class="btn-item">
+            <div class="btn-img">
+                <a href="@Url.Action("Index_Delete","Staffs")">
+                    <img src="~/Icons/cross_cute.ico" />
+                </a>
+            </div>
+            <span>Xoa Nhan Vien</span>
+        </div>
+    </div>
+</div>
+
