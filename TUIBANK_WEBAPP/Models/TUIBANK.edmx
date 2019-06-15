@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TUIBANKModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="TUIBANKModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="AccountID" />
@@ -214,7 +214,8 @@ warning 6002: The table/view 'TUIBANK.dbo.View_Customer_Account' does not have a
             <End Role="Customer" EntitySet="Customer" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TUIBANKModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -272,6 +273,17 @@ warning 6002: The table/view 'TUIBANK.dbo.View_Customer_Account' does not have a
           <Property Name="Branch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="rowguid" Type="Guid" Nullable="false" />
         </EntityType>
+        <EntityType Name="View_Customer_Account">
+          <Key>
+            <PropertyRef Name="customername" />
+            <PropertyRef Name="accountnumber" />
+            <PropertyRef Name="accountbalance" />
+          </Key>
+          <Property Name="customername" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="accountnumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="accountbalance" Type="Int32" Nullable="false" />
+          <Property Name="branchname" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
         <Association Name="FK_Account_Branch">
           <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
           <End Role="Account" Type="Self.Account" Multiplicity="*" />
@@ -315,6 +327,7 @@ warning 6002: The table/view 'TUIBANK.dbo.View_Customer_Account' does not have a
           <EntitySet Name="Branches" EntityType="Self.Branch" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Staffs" EntityType="Self.Staff" />
+          <EntitySet Name="View_Customer_Account" EntityType="Self.View_Customer_Account" />
           <AssociationSet Name="FK_Account_Branch" Association="Self.FK_Account_Branch">
             <End Role="Branch" EntitySet="Branches" />
             <End Role="Account" EntitySet="Accounts" />
@@ -352,15 +365,33 @@ warning 6002: The table/view 'TUIBANK.dbo.View_Customer_Account' does not have a
             <Parameter Name="phone" Mode="In" Type="String" />
             <Parameter Name="branch" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_add_Staff_manager">
+            <Parameter Name="fullname" Mode="In" Type="String" />
+            <Parameter Name="birthday" Mode="In" Type="DateTime" />
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="pid" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="branch" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="sp_delete_Account">
-          <Parameter Name="id" Mode="In" Type="String" />
+            <Parameter Name="id" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_delete_Customer">
-          <Parameter Name="id" Mode="In" Type="String" />
+            <Parameter Name="id" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_delete_staff">
-          <Parameter Name="id" Mode="In" Type="String" />
+            <Parameter Name="id" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_find_account" ReturnType="Collection(TUIBANKModel.sp_find_account_Result)">
+            <Parameter Name="accountnumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_find_account_info" ReturnType="Collection(TUIBANKModel.sp_find_account_info_Result)">
+            <Parameter Name="accountnumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_get_balance">
+            <Parameter Name="accountnumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_get_role" ReturnType="Collection(TUIBANKModel.sp_get_role_Result)" />
           <FunctionImport Name="sp_send_money">
             <Parameter Name="sourceaccount" Mode="In" Type="String" />
             <Parameter Name="destinationaccount" Mode="In" Type="String" />
@@ -393,43 +424,7 @@ warning 6002: The table/view 'TUIBANK.dbo.View_Customer_Account' does not have a
             <Parameter Name="pid" Mode="In" Type="String" />
             <Parameter Name="phone" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="View_Customer_Account" EntityType="TUIBANKModel.View_Customer_Account" />
-          <FunctionImport Name="sp_find_account_info" ReturnType="Collection(TUIBANKModel.sp_find_account_info_Result)">
-          <Parameter Name="accountnumber" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_get_balance">
-          <Parameter Name="accountnumber" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_find_account" ReturnType="Collection(TUIBANKModel.sp_find_account_Result)">
-          <Parameter Name="accountnumber" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_add_Staff_manager">
-            <Parameter Name="fullname" Mode="In" Type="String" />
-            <Parameter Name="birthday" Mode="In" Type="DateTime" />
-            <Parameter Name="address" Mode="In" Type="String" />
-            <Parameter Name="pid" Mode="In" Type="String" />
-            <Parameter Name="phone" Mode="In" Type="String" />
-            <Parameter Name="branch" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_get_role" ReturnType="Collection(TUIBANKModel.sp_get_role_Result)" />
         </EntityContainer>
-        <EntityType Name="View_Customer_Account">
-          <Key>
-            <PropertyRef Name="customername" />
-            <PropertyRef Name="accountnumber" />
-            <PropertyRef Name="accountbalance" />
-          </Key>
-          <Property Name="customername" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="accountnumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="accountbalance" Type="Int32" Nullable="false" />
-          <Property Name="branchname" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <ComplexType Name="sp_find_account_info_Result">
-          <Property Type="String" Name="customername" Nullable="false" MaxLength="200" />
-          <Property Type="String" Name="accountnumber" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="accountbalance" Nullable="false" />
-          <Property Type="String" Name="branchname" Nullable="true" MaxLength="200" />
-        </ComplexType>
         <ComplexType Name="sp_find_account_Result">
           <Property Type="String" Name="accountnumber" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="accountbalance" Nullable="false" />
@@ -437,9 +432,14 @@ warning 6002: The table/view 'TUIBANK.dbo.View_Customer_Account' does not have a
           <Property Type="Double" Name="accountinterest" Nullable="true" />
           <Property Type="DateTime" Name="accountstartdate" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="sp_find_account_info_Result">
+          <Property Type="String" Name="customername" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="accountnumber" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="accountbalance" Nullable="false" />
+          <Property Type="String" Name="branchname" Nullable="true" MaxLength="200" />
+        </ComplexType>
         <ComplexType Name="sp_get_role_Result">
-          <Property Type="String" Name="NAME" Nullable="false" MaxLength="128" />
-          <Property Type="String" Name="NAME1" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="rolename" Nullable="false" MaxLength="128" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -499,27 +499,34 @@ warning 6002: The table/view 'TUIBANK.dbo.View_Customer_Account' does not have a
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_add_Account" FunctionName="TUIBANKModel.Store.sp_add_Account" />
-          <FunctionImportMapping FunctionImportName="sp_add_Customer" FunctionName="TUIBANKModel.Store.sp_add_Customer" />
-          <FunctionImportMapping FunctionImportName="sp_add_Staff" FunctionName="TUIBANKModel.Store.sp_add_Staff" />
-          <FunctionImportMapping FunctionImportName="sp_delete_Account" FunctionName="TUIBANKModel.Store.sp_delete_Account" />
-          <FunctionImportMapping FunctionImportName="sp_delete_Customer" FunctionName="TUIBANKModel.Store.sp_delete_Customer" />
-          <FunctionImportMapping FunctionImportName="sp_delete_staff" FunctionName="TUIBANKModel.Store.sp_delete_staff" />
-          <FunctionImportMapping FunctionImportName="sp_send_money" FunctionName="TUIBANKModel.Store.sp_send_money" />
-          <FunctionImportMapping FunctionImportName="sp_update_Account" FunctionName="TUIBANKModel.Store.sp_update_Account" />
-          <FunctionImportMapping FunctionImportName="sp_update_Account_balance" FunctionName="TUIBANKModel.Store.sp_update_Account_balance" />
-          <FunctionImportMapping FunctionImportName="sp_update_Customer" FunctionName="TUIBANKModel.Store.sp_update_Customer" />
-          <FunctionImportMapping FunctionImportName="sp_update_Staff" FunctionName="TUIBANKModel.Store.sp_update_Staff" />
           <EntitySetMapping Name="View_Customer_Account">
             <EntityTypeMapping TypeName="TUIBANKModel.View_Customer_Account">
               <MappingFragment StoreEntitySet="View_Customer_Account">
-                <ScalarProperty Name="branchname" ColumnName="branchname" />
-                <ScalarProperty Name="accountbalance" ColumnName="accountbalance" />
-                <ScalarProperty Name="accountnumber" ColumnName="accountnumber" />
                 <ScalarProperty Name="customername" ColumnName="customername" />
+                <ScalarProperty Name="accountnumber" ColumnName="accountnumber" />
+                <ScalarProperty Name="accountbalance" ColumnName="accountbalance" />
+                <ScalarProperty Name="branchname" ColumnName="branchname" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_add_Account" FunctionName="TUIBANKModel.Store.sp_add_Account" />
+          <FunctionImportMapping FunctionImportName="sp_add_Customer" FunctionName="TUIBANKModel.Store.sp_add_Customer" />
+          <FunctionImportMapping FunctionImportName="sp_add_Staff" FunctionName="TUIBANKModel.Store.sp_add_Staff" />
+          <FunctionImportMapping FunctionImportName="sp_add_Staff_manager" FunctionName="TUIBANKModel.Store.sp_add_Staff_manager" />
+          <FunctionImportMapping FunctionImportName="sp_delete_Account" FunctionName="TUIBANKModel.Store.sp_delete_Account" />
+          <FunctionImportMapping FunctionImportName="sp_delete_Customer" FunctionName="TUIBANKModel.Store.sp_delete_Customer" />
+          <FunctionImportMapping FunctionImportName="sp_delete_staff" FunctionName="TUIBANKModel.Store.sp_delete_staff" />
+          <FunctionImportMapping FunctionImportName="sp_find_account" FunctionName="TUIBANKModel.Store.sp_find_account">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TUIBANKModel.sp_find_account_Result">
+                <ScalarProperty Name="accountnumber" ColumnName="accountnumber" />
+                <ScalarProperty Name="accountbalance" ColumnName="accountbalance" />
+                <ScalarProperty Name="accountperiod" ColumnName="accountperiod" />
+                <ScalarProperty Name="accountinterest" ColumnName="accountinterest" />
+                <ScalarProperty Name="accountstartdate" ColumnName="accountstartdate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_find_account_info" FunctionName="TUIBANKModel.Store.sp_find_account_info">
             <ResultMapping>
               <ComplexTypeMapping TypeName="TUIBANKModel.sp_find_account_info_Result">
@@ -531,26 +538,18 @@ warning 6002: The table/view 'TUIBANK.dbo.View_Customer_Account' does not have a
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_get_balance" FunctionName="TUIBANKModel.Store.sp_get_balance" />
-          <FunctionImportMapping FunctionImportName="sp_find_account" FunctionName="TUIBANKModel.Store.sp_find_account" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="TUIBANKModel.sp_find_account_Result">
-                <ScalarProperty Name="accountnumber" ColumnName="accountnumber" />
-                <ScalarProperty Name="accountbalance" ColumnName="accountbalance" />
-                <ScalarProperty Name="accountperiod" ColumnName="accountperiod" />
-                <ScalarProperty Name="accountinterest" ColumnName="accountinterest" />
-                <ScalarProperty Name="accountstartdate" ColumnName="accountstartdate" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_add_Staff_manager" FunctionName="TUIBANKModel.Store.sp_add_Staff_manager" />
-          <FunctionImportMapping FunctionImportName="sp_get_role" FunctionName="TUIBANKModel.Store.sp_get_role">
+          <FunctionImportMapping FunctionImportName="sp_get_role" FunctionName="TUIBANKModel.Store.sp_get_role" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="TUIBANKModel.sp_get_role_Result">
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
-                <ScalarProperty Name="NAME1" ColumnName="NAME1" />
+                <ScalarProperty Name="rolename" ColumnName="rolename" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_send_money" FunctionName="TUIBANKModel.Store.sp_send_money" />
+          <FunctionImportMapping FunctionImportName="sp_update_Account" FunctionName="TUIBANKModel.Store.sp_update_Account" />
+          <FunctionImportMapping FunctionImportName="sp_update_Account_balance" FunctionName="TUIBANKModel.Store.sp_update_Account_balance" />
+          <FunctionImportMapping FunctionImportName="sp_update_Customer" FunctionName="TUIBANKModel.Store.sp_update_Customer" />
+          <FunctionImportMapping FunctionImportName="sp_update_Staff" FunctionName="TUIBANKModel.Store.sp_update_Staff" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
