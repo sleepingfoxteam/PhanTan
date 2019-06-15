@@ -290,5 +290,39 @@ namespace TUIBANK_WEBAPP.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_find_account_Result>("sp_find_account", accountnumberParameter);
         }
+    
+        public virtual int sp_add_Staff_manager(string fullname, Nullable<System.DateTime> birthday, string address, string pid, string phone, string branch)
+        {
+            var fullnameParameter = fullname != null ?
+                new ObjectParameter("fullname", fullname) :
+                new ObjectParameter("fullname", typeof(string));
+    
+            var birthdayParameter = birthday.HasValue ?
+                new ObjectParameter("birthday", birthday) :
+                new ObjectParameter("birthday", typeof(System.DateTime));
+    
+            var addressParameter = address != null ?
+                new ObjectParameter("address", address) :
+                new ObjectParameter("address", typeof(string));
+    
+            var pidParameter = pid != null ?
+                new ObjectParameter("pid", pid) :
+                new ObjectParameter("pid", typeof(string));
+    
+            var phoneParameter = phone != null ?
+                new ObjectParameter("phone", phone) :
+                new ObjectParameter("phone", typeof(string));
+    
+            var branchParameter = branch != null ?
+                new ObjectParameter("branch", branch) :
+                new ObjectParameter("branch", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_add_Staff_manager", fullnameParameter, birthdayParameter, addressParameter, pidParameter, phoneParameter, branchParameter);
+        }
+    
+        public virtual ObjectResult<sp_get_role_Result> sp_get_role()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_get_role_Result>("sp_get_role");
+        }
     }
 }

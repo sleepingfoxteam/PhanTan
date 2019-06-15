@@ -185,6 +185,15 @@
     <FunctionImport Name="sp_find_account" ReturnType="Collection(TUIBANKModel.sp_find_account_Result)">
       <Parameter Name="accountnumber" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="sp_add_Staff_manager">
+      <Parameter Name="fullname" Mode="In" Type="String" />
+      <Parameter Name="birthday" Mode="In" Type="DateTime" />
+      <Parameter Name="address" Mode="In" Type="String" />
+      <Parameter Name="pid" Mode="In" Type="String" />
+      <Parameter Name="phone" Mode="In" Type="String" />
+      <Parameter Name="branch" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_get_role" ReturnType="Collection(TUIBANKModel.sp_get_role_Result)" />
   </EntityContainer>
   <EntityType Name="View_Customer_Account">
     <Key>
@@ -209,5 +218,9 @@
     <Property Type="Int32" Name="accountperiod" Nullable="true" />
     <Property Type="Double" Name="accountinterest" Nullable="true" />
     <Property Type="DateTime" Name="accountstartdate" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_get_role_Result">
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="NAME1" Nullable="false" MaxLength="128" />
   </ComplexType>
 </Schema>

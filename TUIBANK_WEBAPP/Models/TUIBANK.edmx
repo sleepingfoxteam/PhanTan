@@ -129,6 +129,14 @@ warning 6002: The table/view 'TUIBANK.dbo.View_Customer_Account' does not have a
           <Parameter Name="phone" Type="nvarchar" Mode="In" />
           <Parameter Name="branch" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="sp_add_Staff_manager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fullname" Type="nvarchar" Mode="In" />
+          <Parameter Name="birthday" Type="date" Mode="In" />
+          <Parameter Name="address" Type="text" Mode="In" />
+          <Parameter Name="pid" Type="nvarchar" Mode="In" />
+          <Parameter Name="phone" Type="nvarchar" Mode="In" />
+          <Parameter Name="branch" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="sp_delete_Account" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="nvarchar" Mode="In" />
         </Function>
@@ -147,6 +155,7 @@ warning 6002: The table/view 'TUIBANK.dbo.View_Customer_Account' does not have a
         <Function Name="sp_get_balance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="accountnumber" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="sp_get_role" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_send_money" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="sourceaccount" Type="nvarchar" Mode="In" />
           <Parameter Name="destinationaccount" Type="nvarchar" Mode="In" />
@@ -392,8 +401,17 @@ warning 6002: The table/view 'TUIBANK.dbo.View_Customer_Account' does not have a
           <Parameter Name="accountnumber" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_find_account" ReturnType="Collection(TUIBANKModel.sp_find_account_Result)">
-            <Parameter Name="accountnumber" Mode="In" Type="String" />
+          <Parameter Name="accountnumber" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_add_Staff_manager">
+            <Parameter Name="fullname" Mode="In" Type="String" />
+            <Parameter Name="birthday" Mode="In" Type="DateTime" />
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="pid" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="branch" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_get_role" ReturnType="Collection(TUIBANKModel.sp_get_role_Result)" />
         </EntityContainer>
         <EntityType Name="View_Customer_Account">
           <Key>
@@ -418,6 +436,10 @@ warning 6002: The table/view 'TUIBANK.dbo.View_Customer_Account' does not have a
           <Property Type="Int32" Name="accountperiod" Nullable="true" />
           <Property Type="Double" Name="accountinterest" Nullable="true" />
           <Property Type="DateTime" Name="accountstartdate" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_get_role_Result">
+          <Property Type="String" Name="NAME" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="NAME1" Nullable="false" MaxLength="128" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -517,6 +539,15 @@ warning 6002: The table/view 'TUIBANK.dbo.View_Customer_Account' does not have a
                 <ScalarProperty Name="accountperiod" ColumnName="accountperiod" />
                 <ScalarProperty Name="accountinterest" ColumnName="accountinterest" />
                 <ScalarProperty Name="accountstartdate" ColumnName="accountstartdate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_add_Staff_manager" FunctionName="TUIBANKModel.Store.sp_add_Staff_manager" />
+          <FunctionImportMapping FunctionImportName="sp_get_role" FunctionName="TUIBANKModel.Store.sp_get_role">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TUIBANKModel.sp_get_role_Result">
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="NAME1" ColumnName="NAME1" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

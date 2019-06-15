@@ -57,7 +57,8 @@ namespace TUIBANK_WEBAPP.Controllers
                     connectionConfiguration.Save(ConfigurationSaveMode.Modified);
                     ConfigurationManager.RefreshSection("connectionStrings");
                     // TODO: get role of user
-                    return RedirectToAction("Index", "Home", new { role = "Manager"});
+                    TUIBANKEntities db = new TUIBANKEntities();
+                    return RedirectToAction("Index", "Home", new { role = "Staff"});
                 }
                 catch(Exception ex)
                 {
