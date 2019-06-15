@@ -17,7 +17,12 @@
         <ul class="nav-ul">
             <li>@Html.ActionLink("Khach Hang", "Main", "Customers")</li>
             <li>@Html.ActionLink("Tai Khoan", "Main", "Accounts")</li>
-            <li>@Html.ActionLink("Nhan Vien", "Main", "Staffs")</li>
+            @{
+                if (Session["role"]!=null && Session["role"].Equals("Manager") == true)
+                {
+                    <li>@Html.ActionLink("Nhan Vien", "Main", "Staffs")</li>
+                }
+            }
             <li>@Html.ActionLink("Dang Xuat", "DangXuat", "Login", null, new { @class = "text-red" })</li>
         </ul>
     </div>
