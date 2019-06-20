@@ -30,9 +30,9 @@ namespace TUIBANK_WEBAPP.Controllers
             string username = Request["username"];
             string password = Request["password"];
             string branch = Request["branch"];
-            branch = branch.Equals("BRHCM")==true ? "CN1" : "CN2";
-            string CONNECTION_STRING = "metadata=res://*/Models.TUIBANK.csdl|res://*/Models.TUIBANK.ssdl|res://*/Models.TUIBANK.msl;provider=System.Data.SqlClient;provider connection string=\"data source=DESKTOP-4AOI1UG\\"+branch+";initial catalog=TUIBANK;user id="+username+";password="+password+";MultipleActiveResultSets=True;App=EntityFramework\"";
-            string SHORT = "Data Source = DESKTOP-4AOI1UG\\"+branch+"; Initial Catalog = TUIBANK; Persist Security Info = True; User ID ="+username+ "; Password = " + password;
+            branch = branch.Equals("BRHCM")==true ? "TUIBANK_HCM" : "TUIBANK_HNO";
+            string CONNECTION_STRING = "metadata=res://*/Models.TUIBANK.csdl|res://*/Models.TUIBANK.ssdl|res://*/Models.TUIBANK.msl;provider=System.Data.SqlClient;provider connection string=\"data source=TUIBANK\\"+branch+";initial catalog=TUIBANK;user id="+username+";password="+password+";MultipleActiveResultSets=True;App=EntityFramework\"";
+            string SHORT = "Data Source = TUIBANK\\"+branch+"; Initial Catalog = TUIBANK; Persist Security Info = True; User ID ="+username+ "; Password = " + password;
             SqlConnection conn = new SqlConnection(SHORT);
             bool loged = false;
             try
@@ -58,7 +58,7 @@ namespace TUIBANK_WEBAPP.Controllers
                     ConfigurationManager.RefreshSection("connectionStrings");
                     // TODO: get role of user
                     TUIBANKEntities db = new TUIBANKEntities();
-                    string role = db.sp_get_role().ToList().Last().rolename;
+                    string role = db.sp_get_role(username).ToList().ElementAt(0).ToString();
                     return RedirectToAction("Index", "Home", new { role = role});
                 }
                 catch(Exception ex)

@@ -46,7 +46,7 @@ namespace TUIBANK_WEBAPP.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FullName,Birthday,Address,PID,PhoneNumber,Branch,rowguid")] Staff staff)
+        public ActionResult Create([Bind(Include = "FullName,Birthday,Address,PID,PhoneNumber,Branch")] Staff staff)
         {
             if (ModelState.IsValid)
             {

@@ -22,5 +22,7 @@ namespace TUIBANK_WEBAPP.Models
         public string PhoneNumber { get; set; }
         public string Branch { get; set; }
         public System.Guid rowguid { get; set; }
+    
+        public virtual Branch Branch1 { get; set; }
     }
 }

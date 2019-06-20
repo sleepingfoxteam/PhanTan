@@ -153,9 +153,6 @@
     <Compile Include="Models\sp_find_account_Result.cs">
       <DependentUpon>TUIBANK.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sp_get_role_Result.cs">
-      <DependentUpon>TUIBANK.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Staff.cs">
       <DependentUpon>TUIBANK.tt</DependentUpon>
     </Compile>

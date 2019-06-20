@@ -92,13 +92,7 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_get_balance" FunctionName="TUIBANKModel.Store.sp_get_balance" />
-    <FunctionImportMapping FunctionImportName="sp_get_role" FunctionName="TUIBANKModel.Store.sp_get_role">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="TUIBANKModel.sp_get_role_Result">
-          <ScalarProperty Name="rolename" ColumnName="rolename" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_get_role" FunctionName="TUIBANKModel.Store.sp_get_role" />
     <FunctionImportMapping FunctionImportName="sp_send_money" FunctionName="TUIBANKModel.Store.sp_send_money" />
     <FunctionImportMapping FunctionImportName="sp_update_Account" FunctionName="TUIBANKModel.Store.sp_update_Account" />
     <FunctionImportMapping FunctionImportName="sp_update_Account_balance" FunctionName="TUIBANKModel.Store.sp_update_Account_balance" />

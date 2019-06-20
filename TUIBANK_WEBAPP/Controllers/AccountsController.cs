@@ -223,7 +223,7 @@ namespace TUIBANK_WEBAPP.Controllers
             Dictionary<Int64, Int64> dic_cal = new Dictionary<long, long>();
             dic_cal.Clear();
             Int64 balance_temp = balance;
-            while (diff_months > period)
+            while (diff_months >= period)
             {
                 Int64 cal = (Int64)(balance_temp * interest_per_period);
                 dic_cal.Add(balance_temp, cal);

@@ -25,6 +25,7 @@
     <Property Name="rowguid" Type="Guid" Nullable="false" />
     <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_Branch" FromRole="Branch" ToRole="Account" />
     <NavigationProperty Name="Customers" Relationship="Self.FK_Customer_Branch" FromRole="Branch" ToRole="Customer" />
+    <NavigationProperty Name="Staffs" Relationship="TUIBANKModel.FK_Staff_Branch" FromRole="Branch" ToRole="Staff" />
   </EntityType>
   <EntityType Name="Customer">
     <Key>
@@ -53,6 +54,7 @@
     <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="Branch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="rowguid" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Branch1" Relationship="TUIBANKModel.FK_Staff_Branch" FromRole="Staff" ToRole="Branch" />
   </EntityType>
   <EntityType Name="View_Customer_Account">
     <Key>
@@ -172,7 +174,9 @@
     <FunctionImport Name="sp_get_balance">
       <Parameter Name="accountnumber" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="sp_get_role" ReturnType="Collection(TUIBANKModel.sp_get_role_Result)" />
+    <FunctionImport Name="sp_get_role" ReturnType="Collection(String)">
+      <Parameter Name="username" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="sp_send_money">
       <Parameter Name="sourceaccount" Mode="In" Type="String" />
       <Parameter Name="destinationaccount" Mode="In" Type="String" />
@@ -205,6 +209,10 @@
       <Parameter Name="pid" Mode="In" Type="String" />
       <Parameter Name="phone" Mode="In" Type="String" />
     </FunctionImport>
+    <AssociationSet Name="FK_Staff_Branch" Association="TUIBANKModel.FK_Staff_Branch">
+      <End Role="Branch" EntitySet="Branches" />
+      <End Role="Staff" EntitySet="Staffs" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_find_account_Result">
     <Property Type="String" Name="accountnumber" Nullable="false" MaxLength="50" />
@@ -219,7 +227,16 @@
     <Property Type="Int32" Name="accountbalance" Nullable="false" />
     <Property Type="String" Name="branchname" Nullable="true" MaxLength="200" />
   </ComplexType>
-  <ComplexType Name="sp_get_role_Result">
-    <Property Type="String" Name="rolename" Nullable="false" MaxLength="128" />
-  </ComplexType>
+  <Association Name="FK_Staff_Branch">
+    <End Type="TUIBANKModel.Branch" Role="Branch" Multiplicity="0..1" />
+    <End Type="TUIBANKModel.Staff" Role="Staff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="BranchID" />
+      </Principal>
+      <Dependent Role="Staff">
+        <PropertyRef Name="Branch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

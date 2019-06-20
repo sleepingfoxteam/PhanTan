@@ -33,7 +33,7 @@ namespace TUIBANK_WEBAPP.Models
         public virtual DbSet<Staff> Staffs { get; set; }
         public virtual DbSet<View_Customer_Account> View_Customer_Account { get; set; }
     
-        public virtual int sp_add_Account(string customer, Nullable<System.DateTime> startdate, Nullable<System.DateTime> enddate, Nullable<double> interest, Nullable<int> period, Nullable<long> balance, string branch)
+        public virtual int sp_add_Account(string customer, Nullable<System.DateTime> startdate, Nullable<System.DateTime> enddate, Nullable<double> interest, Nullable<int> period, Nullable<int> balance, string branch)
         {
             var customerParameter = customer != null ?
                 new ObjectParameter("customer", customer) :
@@ -207,9 +207,13 @@ namespace TUIBANK_WEBAPP.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_get_balance", accountnumberParameter);
         }
     
-        public virtual ObjectResult<sp_get_role_Result> sp_get_role()
+        public virtual ObjectResult<string> sp_get_role(string username)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_get_role_Result>("sp_get_role");
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_get_role", usernameParameter);
         }
     
         public virtual int sp_send_money(string sourceaccount, string destinationaccount, Nullable<int> money)

@@ -99,6 +99,18 @@ warning 6002: The table/view 'TUIBANK.dbo.View_Customer_Account' does not have a
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Staff_Branch">
+    <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+    <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="BranchID" />
+      </Principal>
+      <Dependent Role="Staff">
+        <PropertyRef Name="Branch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Function Name="sp_add_Account" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="customer" Type="nvarchar" Mode="In" />
     <Parameter Name="startdate" Type="date" Mode="In" />
@@ -150,7 +162,9 @@ warning 6002: The table/view 'TUIBANK.dbo.View_Customer_Account' does not have a
   <Function Name="sp_get_balance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="accountnumber" Type="nvarchar" Mode="In" />
   </Function>
-  <Function Name="sp_get_role" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_get_role" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="sp_send_money" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="sourceaccount" Type="nvarchar" Mode="In" />
     <Parameter Name="destinationaccount" Type="nvarchar" Mode="In" />
@@ -207,6 +221,10 @@ warning 6002: The table/view 'TUIBANK.dbo.View_Customer_Account' does not have a
     <AssociationSet Name="FK_Customer_Branch" Association="Self.FK_Customer_Branch">
       <End Role="Branch" EntitySet="Branch" />
       <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Staff_Branch" Association="Self.FK_Staff_Branch">
+      <End Role="Branch" EntitySet="Branch" />
+      <End Role="Staff" EntitySet="Staff" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
